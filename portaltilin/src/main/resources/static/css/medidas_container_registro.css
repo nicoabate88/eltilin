@@ -1,0 +1,41 @@
+
+body, html {
+    height: 100%;
+}
+
+.container {
+    min-height: calc(100% - 312px); 
+    max-height: calc(100% - 312px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#logo {
+    width: 240px;
+    height: 60px;
+}
+
+.card-img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+.card-footer {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+
+}
+
+
+
+
+

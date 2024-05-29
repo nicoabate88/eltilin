@@ -1,0 +1,33 @@
+
+ 
+    #altoModificar {
+      max-height: 400px;
+      min-height: 400px;
+      overflow-y: auto;
+    }
+    
+     body, html {
+      height: 100%;
+    }
+    /* Estilo para que el contenedor tenga una altura mínima y se ajuste a su contenido */
+   
+    
+    #altoModificado {
+      max-height: 310px;
+      min-height: 310px;
+      overflow-y: auto;
+    }
+    
+     #altoModificarA {
+      max-height: 241px;
+      min-height: 241px;
+      overflow-y: auto;
+    }
+    
+     #logo {
+        width: 240px;
+        height: 60px;
+
+    }
+    
+   

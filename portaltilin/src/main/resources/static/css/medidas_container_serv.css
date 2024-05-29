@@ -1,0 +1,43 @@
+
+body, html {
+      height: 100%;
+    }
+    /* Estilo para que el contenedor tenga una altura mínima y se ajuste a su contenido */
+    .container {
+      min-height: calc(100% - 92px); /* Altura total menos el navbar (56px) */
+      max-height: calc(100% - 92px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .card {
+      flex-grow: 1;  
+      
+    }
+    
+    #tablaAltura {
+            
+       min-height: 356px; /* Altura total menos el navbar (56px) */
+       max-height: 356px;  
+       overflow-y: auto;
+   
+    }
+    
+     #tablaAlturaCompra {
+            
+       min-height: 272px; /* Altura total menos el navbar (56px) */
+       max-height: 272px;  
+       overflow-y: auto;
+   
+    }
+    
+   
+
+    #logo {
+        width: 240px;
+        height: 60px;
+
+    }
+    
+    

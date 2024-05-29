@@ -1,0 +1,65 @@
+
+
+body, html {
+      height: 100%;
+    }
+    /* Estilo para que el contenedor tenga una altura mínima y se ajuste a su contenido */
+    .container {
+      min-height: calc(100% - 92px); /* Altura total menos el navbar (56px) */
+      max-height: calc(100% - 92px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .card {
+      flex-grow: 1;  
+      
+    }
+    
+    #tablaAltura {
+            
+       min-height: 425px; /* Altura total menos el navbar (56px) */
+       max-height: 425px;  
+       overflow-y: auto;
+      
+   
+    }
+    
+    #tablaModificar {
+            
+       min-height: 435px; /* Altura total menos el navbar (56px) */
+       max-height: 435px;  
+       overflow-y: auto;
+
+    }
+    
+    #tablaModificarA {
+            
+       min-height: 352px; /* Altura total menos el navbar (56px) */
+       max-height: 352px;  
+       overflow-y: auto;
+   
+    }
+    
+    #tablaEliminar {
+            
+       min-height: 323px; /* Altura total menos el navbar (56px) */
+       max-height: 323px;  
+       overflow-y: auto;
+   
+    }
+    
+
+    #logo {
+        width: 240px;
+        height: 60px;
+
+    }
+    
+   
+      
+     
+     
+
+
