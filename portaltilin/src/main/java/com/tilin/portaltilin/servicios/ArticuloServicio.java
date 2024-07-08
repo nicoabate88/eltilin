@@ -28,8 +28,8 @@ public class ArticuloServicio {
     @Transactional
     public void crearArticulo(String nombre, String codigo, Double precio, Double cantidad) throws MiException {
 
-        validarDatos(nombre);
-        
+        validarDatos(codigo);
+
         Articulo articulo = new Articulo();
 
         String nombreMayusculas = nombre.toUpperCase();
@@ -52,23 +52,24 @@ public class ArticuloServicio {
 
             for (Articulo a : articulos) {
 
-                     Optional<Articulo> p = articuloRepositorio.findByNombre(a.getNombre());   
-                   
-                    if (p.isPresent()) {                                  //Si el articulo está persistido, modifica el precio
-                       Articulo existente = p.get();
-                       existente.setPrecio(a.getPrecio());
-                       articuloRepositorio.save(existente);
-                       
-                    } else {                                             //Si el articulo no esta persistido, lo persiste en BD
-                        articuloRepositorio.save(a);
-                    }
+                // Optional<Articulo> p = articuloRepositorio.findByNombre(a.getNombre());
+                Optional<Articulo> p = articuloRepositorio.findByCodigo(a.getCodigo());
+
+                if (p.isPresent()) {                                  //Si el articulo está persistido, modifica el precio
+                    Articulo existente = p.get();
+                    existente.setPrecio(a.getPrecio());
+                    articuloRepositorio.save(existente);
+
+                } else {                                             //Si el articulo no esta persistido, lo persiste en BD
+                    articuloRepositorio.save(a);
+                }
             }
 
         } catch (Exception e) {
             throw new Exception("La Lista a Importar contiene errores");
         }
     }
-    
+
     @Transactional
     public void actualizarStockCompra(Long id, Double precio, Double cantidad) {
 
@@ -79,43 +80,43 @@ public class ArticuloServicio {
             articulo = art.get();
         }
 
-        Double c = articulo.getCantidad()+cantidad;
-        if(precio!=0.0){
-        articulo.setPrecio(precio);
+        Double c = articulo.getCantidad() + cantidad;
+        if (precio != 0.0) {
+            articulo.setPrecio(precio);
         }
         articulo.setCantidad(c);
 
         articuloRepositorio.save(articulo);
 
     }
-    
+
     @Transactional
-    public void stockArtResta(Detalle detalle){ //metodo para ajustar stock de articulos por factura modificada (articulo eliminado)
-        
+    public void stockArtResta(Detalle detalle) { //metodo para ajustar stock de articulos por factura modificada (articulo eliminado)
+
         Articulo articulo = new Articulo();
-        Optional<Articulo> art = articuloRepositorio.findByNombre(detalle.getNombre());
-        if(art.isPresent()){
+        Optional<Articulo> art = articuloRepositorio.findByCodigo(detalle.getCodigo());
+        if (art.isPresent()) {
             articulo = art.get();
         }
-        
+
         Double c = detalle.getCantidad();
-        articulo.setCantidad(articulo.getCantidad()-c);
-        
+        articulo.setCantidad(articulo.getCantidad() - c);
+
         articuloRepositorio.save(articulo);
     }
-    
+
     @Transactional
-    public void stockArtSuma(Detalle detalle){ //metodo para ajustar stock de articulos por factura modificada (articulo eliminado)
-        
+    public void stockArtSuma(Detalle detalle) { //metodo para ajustar stock de articulos por factura modificada (articulo eliminado)
+
         Articulo articulo = new Articulo();
-        Optional<Articulo> art = articuloRepositorio.findByNombre(detalle.getNombre());
-        if(art.isPresent()){
+        Optional<Articulo> art = articuloRepositorio.findByCodigo(detalle.getCodigo());
+        if (art.isPresent()) {
             articulo = art.get();
         }
-        
+
         Double c = detalle.getCantidad();
-        articulo.setCantidad(articulo.getCantidad()+c);
-        
+        articulo.setCantidad(articulo.getCantidad() + c);
+
         articuloRepositorio.save(articulo);
 
     }
@@ -171,7 +172,9 @@ public class ArticuloServicio {
     }
 
     @Transactional
-    public void modificarArticulo(Long id, String nombre, String codigo, Double precio, Double cantidad) {
+    public void modificarArticulo(Long id, String nombre, String codigo, Double precio, Double cantidad) throws MiException {
+
+        validarDatos(codigo);
 
         Articulo articulo = new Articulo();
 
@@ -212,39 +215,19 @@ public class ArticuloServicio {
         return articuloRepositorio.ultimoArticulo();
     }
 
-    @Transactional
-    public void actualizarPrecio(Double precio) {
-
-        ArrayList<Articulo> listaArticulo = buscarArticulos();
-
-        Articulo art = new Articulo();
-
-        for (Articulo articulo : listaArticulo) {
-
-            art.setId(articulo.getId());
-            art.setNombre(articulo.getNombre());
-
-            art.setPrecio(articulo.getPrecio() + ((articulo.getPrecio() * precio) / 100));
-
-            articuloRepositorio.save(art);
-
-        }
-    }
-    
-    public void validarDatos(String nombre) throws MiException {
+    public void validarDatos(String codigo) throws MiException {
 
         ArrayList<Articulo> listaArticulo = new ArrayList();
 
         listaArticulo = buscarArticulos();
 
         for (Articulo a : listaArticulo) {
-            if (a.getNombre().equalsIgnoreCase(nombre)) {
-                throw new MiException("El nombre de ARTÍCULO ya está registrado");
-
+            if (a.getCodigo().equalsIgnoreCase(codigo)) {
+                throw new MiException("El Código de ARTÍCULO ya está registrado");
             }
 
         }
 
     }
-     
+
 }

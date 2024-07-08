@@ -42,7 +42,7 @@
                                 </svg>  <h5>Servicio</h5>
                             </div>  
                         </div>   
-                        <div class="col-sm-1 col-md-5 col-lg-5 col-xl-5">
+                        <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
                             <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                 <h3>Servicios de Vehículo</h3>
                             </div>
@@ -50,20 +50,20 @@
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 mb-3">               
+                    <div class="row mb-3">
+                        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">               
                             <div class="form-floating mb-3">
                                 <label for="id" class="form-label text-white">ID Vehículo</label>
                                 <input type="text" id="id" class="bg-dark text-white form-control" th:value="${vehiculo.id}" disabled readonly>
                             </div>
                         </div>
-                        <div class="col-sm-2 col-md-6 col-lg-6 col-xl-6 mb-3">               
+                        <div class="col-sm-2 col-md-6 col-lg-6 col-xl-6">               
                             <div class="form-floating mb-3">
                                 <label for="nombre" class="form-label text-white">Vehículo</label>
                                 <input type="text" id="nombre" class="bg-dark text-white form-control" th:value="${vehiculo.dominio}+' - '+ ${vehiculo.marca}+' '+${vehiculo.modelo}" disabled readonly>
                             </div>
                         </div>
-                        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 mb-3">               
+                        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">               
                             <div class="form-floating mb-3">
                                 <label for="nombre" class="form-label text-white">Año</label>
                                 <input type="number" id="nombre" class="bg-dark text-white form-control" th:value="${vehiculo.anio}" disabled readonly>

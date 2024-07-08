@@ -1,13 +1,11 @@
 package com.tilin.portaltilin.servicios;
 
 import com.tilin.portaltilin.entidades.Cliente;
-import com.tilin.portaltilin.entidades.Presupuesto;
-import com.tilin.portaltilin.entidades.Transaccion;
+import com.tilin.portaltilin.entidades.Recibo;
 import com.tilin.portaltilin.entidades.Vehiculo;
 import com.tilin.portaltilin.excepciones.MiException;
 import com.tilin.portaltilin.repositorios.ClienteRepositorio;
-import com.tilin.portaltilin.repositorios.PresupuestoRepositorio;
-import com.tilin.portaltilin.repositorios.TransaccionRepositorio;
+import com.tilin.portaltilin.repositorios.ReciboRepositorio;
 import com.tilin.portaltilin.repositorios.VehiculoRepositorio;
 import com.tilin.portaltilin.util.ClienteComparador;
 import java.util.ArrayList;
@@ -24,15 +22,11 @@ public class ClienteServicio {
     @Autowired
     private ClienteRepositorio clienteRepositorio;
     @Autowired
-    private ServicioServicio servicioServicio;
-    @Autowired
-    private TransaccionRepositorio transaccionRepositorio;
-    @Autowired
     private VehiculoRepositorio vehiculoRepositorio;
     @Autowired
     private CuentaServicio cuentaServicio;
     @Autowired
-    private PresupuestoRepositorio presupuestoRepositorio;
+    private ReciboRepositorio reciboRepositorio;
 
     @Transactional
     public void crearCliente(String nombre, Long cuit, String localidad, String direccion, Long telefono, String email) throws MiException {
@@ -100,7 +94,6 @@ public class ClienteServicio {
         Cliente cliente = new Cliente();
 
         Optional<Cliente> cte = clienteRepositorio.findById(id);
-
         if (cte.isPresent()) {
             cliente = cte.get();
         }
@@ -123,11 +116,10 @@ public class ClienteServicio {
     @Transactional
     public void eliminarCliente(Long id) throws MiException {
 
-        ArrayList<Transaccion> listaTransaccion = transaccionRepositorio.buscarTransaccionIdCliente(id);
         ArrayList<Vehiculo> listaVehiculo = vehiculoRepositorio.buscarVehiculoIdCliente(id);
-        ArrayList<Presupuesto> listaPresupuesto = presupuestoRepositorio.buscarPresupuestoIdCliente(id);
+        ArrayList<Recibo> listaRecibo = reciboRepositorio.buscarReciboIdCliente(id);
 
-        if (listaTransaccion.isEmpty() && listaVehiculo.isEmpty() && listaPresupuesto.isEmpty()) {
+        if (listaVehiculo.isEmpty() && listaRecibo.isEmpty()) {
 
             clienteRepositorio.deleteById(id);
 
@@ -135,7 +127,7 @@ public class ClienteServicio {
 
         } else {
 
-            throw new MiException("El Cliente no puede ser eliminado, tiene Servicio/Presupuesto/Recibo o Vehículo asociado");
+            throw new MiException("El Cliente no puede ser eliminado, tiene Servicio o Vehículo asociado");
         }
 
     }

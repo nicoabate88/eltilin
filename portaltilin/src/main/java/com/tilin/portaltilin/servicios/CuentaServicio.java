@@ -66,7 +66,7 @@ public class CuentaServicio {
         for (Transaccion t : transacciones) {
             saldo = saldo + t.getImporte();
         }
-        
+
         double saldoRed = Math.round(saldo * 100.0) / 100.0;
 
         cuenta.setSaldo(saldoRed);
@@ -96,7 +96,7 @@ public class CuentaServicio {
         }
 
         double saldoRed = Math.round(saldo * 100.0) / 100.0;
-        
+
         cuenta.setSaldo(saldoRed);
 
         cuentaRepositorio.save(cuenta);
@@ -109,28 +109,30 @@ public class CuentaServicio {
         Double saldo = 0.0;
         Long idCliente = transaccion.getCliente().getId();
         int numeroInt = transaccion.getId().intValue();
-        
+
         transaccion.setConcepto("ELIMINADO");
         transaccion.setImporte(0.0);
         transaccion.setServicio(null);
         transaccion.setRecibo(null);
         transaccion.setCliente(null);
         transaccionRepositorio.save(transaccion);
-        
+
         Cuenta cuenta = cuentaRepositorio.buscarCuentaIdCliente(idCliente);
-        
+
         List<Transaccion> transacciones = cuenta.getTransaccion();
-        for (int i = 0; i <transacciones.size(); i++) {
+        for (int i = 0; i < transacciones.size(); i++) {
             if (transacciones.get(i).getId() == numeroInt) {
                 transacciones.remove(i);
             }
         }
-        
+
         for (Transaccion tr : transacciones) {
             saldo = saldo + tr.getImporte();
         }
 
-        cuenta.setSaldo(saldo);
+        double saldoRed = Math.round(saldo * 100.0) / 100.0;
+
+        cuenta.setSaldo(saldoRed);
 
         cuentaRepositorio.save(cuenta);
 

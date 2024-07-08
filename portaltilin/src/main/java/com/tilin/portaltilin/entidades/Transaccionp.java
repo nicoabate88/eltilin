@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.entidades;
 
 import java.util.Date;
@@ -12,7 +11,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Transaccionp {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -115,7 +114,5 @@ public class Transaccionp {
     public void setCompra(Compra compra) {
         this.compra = compra;
     }
-    
-    
-    
+
 }

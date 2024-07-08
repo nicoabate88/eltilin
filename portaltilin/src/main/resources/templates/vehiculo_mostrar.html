@@ -84,22 +84,25 @@
                             </div>
                         </div>    
                     </div>        
-                    <div class="row">
+                    <div class="row mb-5">
                         <div class="col-sm-8">
-                            <div class="form-floating mb-5">
+                            <div class="form-floating">
                                 <label for="modelo" class="form-label text-white">Cliente</label>
                                 <input type="text" id="cliente" class="bg-dark text-white form-control" th:value="${vehiculo.cliente.nombre}" disabled readonly>
                             </div> 
                         </div>
                     </div>
                     
-                     <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">    
+                     <div class="mb-5 col-sm-6 col-md-4 col-lg-4 col-xl-4">    
                             <div th:if="${exito != null}" class="btn btn-outline-warning">
                                 <h5>Mensaje:</h5>
                                 <h6 th:text="${exito}"></h6>
                             </div>
                         </div>
-                    <div class="card-footer">
+                    <div class="card-footer d-none d-sm-block">
+                    <a th:href= "@{/vehiculo/registrar}" type="button" class="btn btn-outline-warning" title="Aceptar">Aceptar</a>
+                    </div>
+                    <div class="d-block d-md-none">
                     <a th:href= "@{/vehiculo/registrar}" type="button" class="btn btn-outline-warning" title="Aceptar">Aceptar</a>
                     </div>
                 </div>    

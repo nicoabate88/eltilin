@@ -31,46 +31,59 @@
             <div class="card bg-dark">  
                 <div class="card-header bg-dark text-white">
 
-                    <div class="row">
-                        <div class="mb-3 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                    <div class="row mb-2">
+                        <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                             <div class="form-floating mb-2 btn btn-outline-danger" type="button">                                      
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
                                 </svg> <h5>Compra</h5>
                             </div> 
                         </div>   
-                        <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">
+                        <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">
                             <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                 <h3>Modificar Compra</h3>
                             </div>
                         </div>
-                         <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">    
+                         <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">    
                             <div th:if="${error != null}" class="btn btn-outline-danger">
                                 <h5>Mensaje:</h5>
                                 <h6 th:text="${error}"></h6>
                             </div>
                         </div> 
-                        <div class=" col-sm-1 col-md-2 col-lg-2 col-xl-2">
-                            <a th:href="@{/compra/eliminar/__${compra.id}__}" type="button" class="form-floating mb-2 button btn btn-outline-warning">                                      
+                        <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                            <a th:href="@{/compra/eliminar/__${compra.id}__}" type="button"  title="Eliminar Compra" class="form-floating mb-2 button btn btn-outline-warning">                                      
                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
                                 </svg>   <h5>Eliminar</h5>
                             </a>    
                         </div> 
                     </div>
+                    
+                    <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Modificar Compra</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/compra/eliminar/__${compra.id}__}" class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
+                                </svg>
+                                    <h6 class="text-warning">Eliminar</h6> 
+                                </a> </div>
+                        </div>
 
                     <form class="formulario" th:action="@{/compra/modifica/__${compra.id}__}" method="POST">
                         
                         <input hidden th:value="${compra.id}" name="id">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2">               
-                                <div class="form-floating mb-3">
+                                <div class="form-floating mb-2">
                                     <label for="id" class="form-label text-white">ID Compra</label>
                                     <input type="text" id="id" class="bg-dark text-white form-control" th:value="${compra.id}" disabled readonly>
                                 </div>
                             </div>
-                            <div class="mb-3 col-sm-1 col-md-8 col-lg-8 col-xl-8">
-                                <div class="form-floating">
+                            <div class="col-sm-1 col-md-8 col-lg-8 col-xl-8">
+                                <div class="form-floating mb-2">
                                     <label for="proveedor" class="form-label text-white">Seleccione Proveedor</label>
                                     <select id="proveedor" class="bg-dark text-white form-control" name="idProveedor" required>
                                          <option selected th:text="${compra.proveedor.nombre}"
@@ -84,15 +97,15 @@
                             </div>
                         </div>
                         
-                         <div class="row mb-3">
+                         <div class="row mb-2">
                           <div class="col-sm-2">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="fecha" class="form-label text-white">Fecha</label>
                                     <input id="fecha" type="date" class="bg-dark text-white form-control" name="fecha" th:value="${compra.fecha}" required>
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="form-floating">    
+                                <div class="form-floating mb-2">    
                                     <label for="tipoComprobante">Tipo</label>
                                     <select id="tipoComprobante" type="text" class="bg-dark text-white form-control" name="tipoComprobante"  required>
                                         <option selected th:text="${compra.tipoComprobante}"
@@ -107,19 +120,19 @@
                             </div>
                       
                         <div class="col-sm-3">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="numero" class="form-label text-white">Número de Comprobante</label>
                                     <input type="number" id="numero" class="bg-dark text-white form-control" name="numeroComprobante" th:value="${compra.numeroComprobante}" required>
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="importe" class="form-label text-white">Importe de Comprobante</label>
                                     <input type="number" step="0.01" min="0" id="importe" class="bg-dark text-white form-control" name="importe" th:value="${compra.importe}" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-4">
                             <div class="form-floating col-sm-10">
                                 <label for="observacion" class="form-label text-white">Ingrese Observación</label>
                                 <input id="observacion" type="textarea" class="bg-dark text-white form-control" name="observacion" th:value="${compra.observacion}">  

@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.servicios;
 
 import com.tilin.portaltilin.entidades.Pago;
@@ -22,7 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PagoServicio {
-    
+
     @Autowired
     private PagoRepositorio pagoRepositorio;
     @Autowired
@@ -33,10 +32,10 @@ public class PagoServicio {
     private TransaccionpServicio transaccionpServicio;
     @Autowired
     private ValorServicio valorServicio;
-    
+
     @Transactional
-    public void crearPago(Long idProveedor, String observacion, Double importe, List<Valor> valores, Long idUsuario) throws ParseException{
-        
+    public void crearPago(Long idProveedor, String observacion, Double importe, List<Valor> valores, Long idUsuario) throws ParseException {
+
         Proveedor proveedor = new Proveedor();
         Optional<Proveedor> prov = proveedorRepositorio.findById(idProveedor);
         if (prov.isPresent()) {
@@ -48,11 +47,11 @@ public class PagoServicio {
         if (user.isPresent()) {
             usuario = user.get();
         }
-        
+
         Pago pago = new Pago();
 
         String obsMayusculas = observacion.toUpperCase();
-        
+
         pago.setEstado("EJECUTADO");
         pago.setProveedor(proveedor);
         pago.setFecha(new Date());
@@ -60,12 +59,13 @@ public class PagoServicio {
         pago.setImporte(importe);
         pago.setValor(valores);
         pago.setUsuario(usuario);
-        
+
         pagoRepositorio.save(pago);
-        
+
         transaccionpServicio.crearTransaccionPago(buscarUltimo());
-        
+
     }
+
     @Transactional
     public void modificarPago(Long idPago, Long idProveedor, String observacion, Long idUsuario) throws ParseException { //modificar Proveedor u observacion de Recibo
 
@@ -97,7 +97,7 @@ public class PagoServicio {
         transaccionpServicio.modificarTransaccionPago(idPago);
 
     }
-    
+
     @Transactional
     public void modificarPagoV(Long idPago, List<Valor> valores, Long idUsuario) { //modificar Valores de Pago
 
@@ -130,19 +130,19 @@ public class PagoServicio {
         transaccionpServicio.modificarTransaccionPago(idPago);
 
     }
-    
-     public Pago buscarPago(Long idPago) {
+
+    public Pago buscarPago(Long idPago) {
 
         return pagoRepositorio.getById(idPago);
 
     }
-     
-     public Pago buscarPagoIdValor(Long idValor) {
+
+    public Pago buscarPagoIdValor(Long idValor) {
 
         return pagoRepositorio.buscarPagoValor(idValor);
 
-    } 
-     
+    }
+
     public ArrayList<Pago> buscarPagos() {
 
         ArrayList<Pago> listaPagos = new ArrayList();
@@ -150,13 +150,13 @@ public class PagoServicio {
         listaPagos = pagoRepositorio.buscarPagos();
 
         return listaPagos;
-    } 
-    
-     public Long buscarUltimo() {
+    }
+
+    public Long buscarUltimo() {
 
         return pagoRepositorio.ultimoPago();
     }
-     
+
     @Transactional
     public void eliminarPago(Long idPago) {
 
@@ -172,10 +172,10 @@ public class PagoServicio {
         pagoRepositorio.save(pago);
         transaccionpServicio.eliminarTransaccionPago(idPago);
         valorServicio.modificarValorPorEliminarPago(idPago);
-        
+
     }
-    
-       public ArrayList<Pago> buscarPagosIdDesc() {
+
+    public ArrayList<Pago> buscarPagosIdDesc() {
 
         ArrayList<Pago> listaPagos = buscarPagos();
 
@@ -204,8 +204,8 @@ public class PagoServicio {
         return listaPagos;
 
     }
-    
-     public ArrayList<Pago> buscarPagosFechaDesc() {
+
+    public ArrayList<Pago> buscarPagosFechaDesc() {
 
         ArrayList<Pago> listaPagos = buscarPagos();
 
@@ -214,10 +214,10 @@ public class PagoServicio {
         return listaPagos;
 
     }
-    
-     public Date convertirFecha(String fecha) throws ParseException { //convierte fecha String a fecha Date
+
+    public Date convertirFecha(String fecha) throws ParseException { //convierte fecha String a fecha Date
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return formato.parse(fecha);
     }
-    
+
 }

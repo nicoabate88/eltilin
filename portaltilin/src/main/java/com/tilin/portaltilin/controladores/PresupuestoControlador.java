@@ -57,27 +57,27 @@ public class PresupuestoControlador {
     Long idVehiculo;
     String fecha;
     String observacion;
-    
+
     @GetMapping("/registrar")
-     public String registrarCliente(ModelMap modelo){
-         
+    public String registrarCliente(ModelMap modelo) {
+
         detalles.clear();
-        
+
         modelo.addAttribute("clientes", clienteServicio.buscarClientesNombreAsc());
-        
+
         return "presupuesto_registrarCliente.html";
     }
-    
-       @PostMapping("/registrarC")
+
+    @PostMapping("/registrarC")
     public String procesarOpcionSeleccionada(@RequestParam("cliente") Long cliente, ModelMap modelo) {
-      
+
         idCliente = cliente;
-        
+
         modelo.put("idCliente", idCliente);
         modelo.put("cliente", clienteServicio.buscarCliente(idCliente));
         modelo.addAttribute("vehiculos", vehiculoServicio.buscarVehiculoIdCliente(idCliente));
         modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
-        
+
         return "presupuesto_registrar.html";
     }
 
@@ -139,7 +139,7 @@ public class PresupuestoControlador {
 
         detalle.setArticulo(articulo);
 
-        detalleServicio.crearDetalle(detalle.getNombre(), detalle.getCodigo(), detalle.getCantidad(), detalle.getPrecio(), detalle.getTotal(), detalle.getArticulo(),"PRESUPUESTO");
+        detalleServicio.crearDetalle(detalle.getNombre(), detalle.getCodigo(), detalle.getCantidad(), detalle.getPrecio(), detalle.getTotal(), detalle.getArticulo(), "PRESUPUESTO");
 
         detalle.setId(detalleServicio.buscarUltimo());
 
@@ -280,7 +280,10 @@ public class PresupuestoControlador {
         } else {
             detalle.setPrecio(articulo.getPrecio());
         }
-        detalle.setTotal(detalle.getPrecio() * cantidad);
+
+        double total = detalle.getPrecio() * cantidad;
+        double totalRedondeado = Math.round(total * 100.0) / 100.0;
+        detalle.setTotal(totalRedondeado);
         detalle.setArticulo(articulo);
 
         detalleServicio.crearDetalle(detalle.getNombre(), detalle.getCodigo(), detalle.getCantidad(), detalle.getPrecio(), detalle.getTotal(), detalle.getArticulo(), "PRESUPUESTO");
@@ -415,7 +418,7 @@ public class PresupuestoControlador {
 
         Presupuesto presupuesto = presupuestoServicio.buscarPresupuesto(id);
         String totalServicio = convertirNumeroMiles(presupuesto.getTotal());
-        
+
         modelo.put("presupuesto", presupuesto);
         modelo.put("totalServicio", totalServicio);
 

@@ -4,6 +4,7 @@ import com.tilin.portaltilin.entidades.Cliente;
 import com.tilin.portaltilin.entidades.Recibo;
 import com.tilin.portaltilin.entidades.Usuario;
 import com.tilin.portaltilin.entidades.Valor;
+import com.tilin.portaltilin.excepciones.MiException;
 import com.tilin.portaltilin.repositorios.ClienteRepositorio;
 import com.tilin.portaltilin.repositorios.ReciboRepositorio;
 import com.tilin.portaltilin.repositorios.UsuarioRepositorio;
@@ -75,7 +76,7 @@ public class ReciboServicio {
         return reciboRepositorio.getById(idRecibo);
 
     }
-    
+
     public Recibo buscarReciboIdValor(Long idValor) {
 
         return reciboRepositorio.buscarReciboValor(idValor);
@@ -158,22 +159,35 @@ public class ReciboServicio {
     }
 
     @Transactional
-    public void eliminarRecibo(Long idRecibo) {
+    public void eliminarRecibo(Long idRecibo) throws MiException {
 
+        Boolean flag = true;
         Recibo recibo = new Recibo();
         Optional<Recibo> rec = reciboRepositorio.findById(idRecibo);
         if (rec.isPresent()) {
             recibo = rec.get();
         }
 
-        transaccionServicio.eliminarTransaccionRecibo(idRecibo);
-        valorServicio.modificarValorPorEliminarRecibo(idRecibo);
-        
-        recibo.setEstado("ELIMINADO");
-        recibo.setImporte(0.0);
-        recibo.setValor(null);
-        recibo.setCliente(null);
-        reciboRepositorio.save(recibo);
+        ArrayList<Valor> v = valorRepositorio.buscarValorRecibo(idRecibo);
+        for (Valor valor : v) {
+            if (valor.getEstado().equalsIgnoreCase("GIRADO")) {
+                flag = false;
+            }
+        }
+
+        if (flag == false) {
+            throw new MiException("El Recibo no puede ser eliminado, tiene CHEQUE Girado ");
+        } else {
+
+            transaccionServicio.eliminarTransaccionRecibo(idRecibo);
+            valorServicio.modificarValorPorEliminarRecibo(idRecibo);
+
+            recibo.setEstado("ELIMINADO");
+            recibo.setImporte(0.0);
+            recibo.setValor(null);
+            recibo.setCliente(null);
+            reciboRepositorio.save(recibo);
+        }
 
     }
 
@@ -211,8 +225,8 @@ public class ReciboServicio {
         return listaRecibos;
 
     }
-    
-       public ArrayList<Recibo> buscarRecibosFechaDesc() {
+
+    public ArrayList<Recibo> buscarRecibosFechaDesc() {
 
         ArrayList<Recibo> listaRecibos = buscarRecibos();
 

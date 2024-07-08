@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.servicios;
 
 import com.tilin.portaltilin.entidades.Compra;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TransaccionpServicio {
-    
+
     @Autowired
     private TransaccionpRepositorio transaccionpRepositorio;
     @Autowired
@@ -27,7 +26,7 @@ public class TransaccionpServicio {
     private CuentapServicio cuentapServicio;
     @Autowired
     private CompraRepositorio compraRepositorio;
-    
+
     @Transactional
     public void crearTransaccionPago(Long idPago) {
 
@@ -51,7 +50,7 @@ public class TransaccionpServicio {
         cuentapServicio.agregarTransaccionCuenta(buscarUltimo());
 
     }
-    
+
     @Transactional
     public void modificarTransaccionPago(Long idPago) {
 
@@ -60,7 +59,7 @@ public class TransaccionpServicio {
         if (pgo.isPresent()) {
             pago = pgo.get();
         }
-        
+
         Transaccionp transaccion = transaccionpRepositorio.buscarTransaccionIdPago(idPago);
 
         if (!pago.getProveedor().getNombre().equalsIgnoreCase(transaccion.getProveedor().getNombre())) {//si lo que se modifico en la transacion es cliente, entra en este if
@@ -80,6 +79,7 @@ public class TransaccionpServicio {
             cuentapServicio.modificarTransaccionCuenta(transaccion);
         }
     }
+
     @Transactional
     public void eliminarTransaccionPago(Long idPago) {
 
@@ -92,7 +92,7 @@ public class TransaccionpServicio {
         cuentapServicio.eliminarTransaccionCuenta(transaccion);
 
     }
-    
+
     @Transactional
     public void crearTransaccionCompra(Long idCompra) {
 
@@ -117,15 +117,16 @@ public class TransaccionpServicio {
         cuentapServicio.agregarTransaccionCuenta(buscarUltimo());
 
     }
+
     @Transactional
     public void modificarTransaccionCompra(Long idCompra) {
 
         Compra compra = new Compra();
-        Optional<Compra> com= compraRepositorio.findById(idCompra);
+        Optional<Compra> com = compraRepositorio.findById(idCompra);
         if (com.isPresent()) {
             compra = com.get();
         }
-        
+
         Transaccionp transaccion = transaccionpRepositorio.buscarTransaccionIdCompra(idCompra);
 
         if (!compra.getProveedor().getNombre().equalsIgnoreCase(transaccion.getProveedor().getNombre())) {//si lo que se modifico en la transacion es Proveedor, entra en este if
@@ -146,6 +147,7 @@ public class TransaccionpServicio {
             cuentapServicio.modificarTransaccionCuenta(transaccion);
         }
     }
+
     @Transactional
     public void eliminarTransaccionCompra(Long idCompra) {
 
@@ -158,12 +160,12 @@ public class TransaccionpServicio {
         cuentapServicio.eliminarTransaccionCuenta(transaccion);
 
     }
-    
-      public Transaccionp buscarTransaccion(Long id) {
+
+    public Transaccionp buscarTransaccion(Long id) {
 
         return transaccionpRepositorio.getById(id);
     }
-      
+
     public ArrayList<Transaccionp> buscarTransacciones() {
 
         ArrayList<Transaccionp> listaTransaccion = new ArrayList();
@@ -171,15 +173,15 @@ public class TransaccionpServicio {
         listaTransaccion = transaccionpRepositorio.buscarTransacciones();
 
         return listaTransaccion;
-    }  
-    
-       public Long buscarUltimo() {
+    }
+
+    public Long buscarUltimo() {
 
         return transaccionpRepositorio.ultimaTransaccion();
 
     }
 
-     public ArrayList<Transaccionp> buscarTransaccionIdCuenta(Long idCuenta) {
+    public ArrayList<Transaccionp> buscarTransaccionIdCuenta(Long idCuenta) {
 
         Cuentap cuenta = cuentapServicio.buscarCuenta(idCuenta);
 
@@ -196,6 +198,6 @@ public class TransaccionpServicio {
         Collections.sort(listaTransacciones, TransaccionpComparador.ordenarIdDesc); //ordena con fecha descendente para presentar en la vista desde mas reciente a mas antiguo
 
         return listaTransacciones;
-    }   
-    
+    }
+
 }

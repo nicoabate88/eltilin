@@ -63,7 +63,7 @@ public class DetalleServicio {
         detalleRepositorio.save(detalle);
 
     }
-    
+
     @Transactional
     public void modificarDetallePresupuesto(Long id) {
 

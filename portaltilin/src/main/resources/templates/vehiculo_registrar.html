@@ -35,28 +35,41 @@
                 <div class="card bg-dark">  
                     <div class="card-header bg-dark text-white">
 
-                        <div class="row">
-                            <div class="mb-3 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                        <div class="row mb-2">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                                 <div class="form-floating mb-2 btn btn-outline-danger" type="button">                                       
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
                                     <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
                                     </svg> <h5>Vehículo</h5>
                                 </div>   
                             </div>   
-                            <div class="col-sm-1 col-md-3 col-lg-3 col-xl-3">
+                            <div class="d-none d-sm-block col-md-3 col-lg-3 col-xl-3">
                                 <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                     <h3>Registrar Vehículo</h3>
                                 </div>
                             </div>
-                            <div class="col-sm-1 col-md-5 col-lg-5 col-xl-5">    
+                            <div class="d-none d-sm-block col-md-5 col-lg-5 col-xl-5">    
                             </div> 
-                            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 text-end">    
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">    
                             <a th:href="@{/vehiculo/listar}" title="Ver Artículos" type="button" class="form-floating mb-2 btn btn-outline-warning">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
                                     <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
                                     </svg> <h5>Ver Vehículos</h5>
                             </a>
                         </div>
+                        </div>
+                        
+                        <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Registrar Vehículo</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/vehiculo/listar}" class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
+                                    <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
+                                    </svg>
+                                    <h6 class="text-warning">Vehículos</h6> 
+                                </a> </div>
                         </div>
 
                         <form class="formulario" th:action="@{/vehiculo/registro}" method="POST">
@@ -86,13 +99,13 @@
                                 <div class="col-sm-4">
                                     <div class="form-floating mb-3">
                                         <label for="anio" class="form-label text-white">Año</label>
-                                        <input type="number" id="anio" class="bg-dark text-white form-control" name="anio" placeholder="Ingrese Año" th:value="${anio}" required>
+                                        <input type="number" id="anio" class="bg-dark text-white form-control" name="anio" placeholder="Ingrese Año" th:value="${anio}">
                                     </div>
                                 </div>    
                             </div>
-                            <div class="row">
+                            <div class="row mb-5">
                                 <div class="col-sm-8">
-                                    <div class="form-floating mb-5">
+                                    <div class="form-floating">
                                         <label for="cliente" class="form-label text-white">Cliente</label>
                                         <select id="cliente" class="bg-dark text-white form-control" name="idCliente" required>
                                             <option value="" selected disabled>Seleccione Cliente</option>
@@ -104,16 +117,20 @@
                                 </div>
                             </div>
                             
-                            <div class="col-sm-1 col-md-5 col-lg-5 col-xl-5">    
+                            <div class="col-sm-1 col-md-5 col-lg-5 col-xl-5 mb-5">    
                                 <div th:if="${error != null}" class="btn btn-outline-danger">
                                     <h5>Mensaje:</h5>
                                     <h6 th:text="${error}"></h6>
                                 </div>
                             </div>
-                            
-                            <div class="card-footer">
-                            <button type="submit" class="btn btn-outline-danger" title="Registrar Vehículo">Aceptar</button>
-                            <a th:href= "@{/vehiculo/registrar}" type="button" class="btn btn-outline-warning" title="Cancelar">Cancelar</a>
+
+                            <div class="card-footer d-none d-sm-block">
+                                <button type="submit" class="btn btn-outline-danger" title="Registrar Vehículo">Aceptar</button>
+                                <a th:href= "@{/vehiculo/registrar}" type="button" class="btn btn-outline-warning" title="Cancelar">Cancelar</a>
+                            </div>
+                            <div class="d-block d-md-none">
+                                <button type="submit" class="btn btn-outline-danger" title="Registrar Vehículo">Aceptar</button>
+                                <a th:href= "@{/vehiculo/registrar}" type="button" class="btn btn-outline-warning" title="Cancelar">Cancelar</a>
                             </div>
                         </form>
                     </div>    

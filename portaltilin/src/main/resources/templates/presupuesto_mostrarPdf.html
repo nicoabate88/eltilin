@@ -3,181 +3,142 @@
     <head>
         <title>PresupuestoPdf</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <style>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+                    <style>
 
-            html, body {
-                height: 100%;
-            }
+                        html, body {
+                            height: 100%;
+                        }
+                        /* Estilos personalizados */
+                        .card {
+                            padding: 0; /* Eliminar el relleno del navbar */
+                            margin: 0 !important;
+                            border: none;
+                            box-shadow: none;
+                            top: 0;
+                        }
 
-            
-            /* Estilos personalizados */
-            .card {
-                padding: 0; /* Eliminar el relleno del navbar */
-                margin: 0 !important;
-                border: none;
-                box-shadow: none;
-                top: 0;
-            }
+                        .card-img img {
+                            width: 100%; /* La imagen ocupa todo el ancho del navbar */
+                            height: auto; /* Altura automática para mantener la proporción */
+                            background-color: transparent; 
+                        }
+                        .footer {
+                            width: 100%;
+                            background-color: #f8f9fa; /* Color de fondo del footer */
+                            position: absolute;
+                            bottom: 0;
+                        }
+                        .footer img {
+                            width: 100%;
+                            height: auto;
+                        }
+                        @media print {
+                            .boton-imprimir {
+                                display: none !important;
+                            }
+                        }
+                    </style>        
+                    </head>
 
-            .card-img img {
-                width: 100%; /* La imagen ocupa todo el ancho del navbar */
-                height: auto; /* Altura automática para mantener la proporción */
-                background-color: transparent; 
-            }
-
-
-
-            .footer {
-                width: 100%;
-                background-color: #f8f9fa; /* Color de fondo del footer */
-                position: absolute;
-                bottom: 0;
-                
-            }
-
-            .footer img {
-                width: 100%;
-                height: auto;
-            }
-            
-             @media print {
-               .boton-imprimir {
-                display: none !important;
-  
-            }
-        }
-          
-      
-       
-        </style>        
-    </head>
-
-
-    <body>
-        <div class="container">
-            <div class="card">
-                <div class="card-expand-lg card-img ">
-                    <img src="/membrete_superior.jpg" alt="Imagen Navbar">
-                </div>
-            </div>
-        </div>
-        
-        
-                <div class="container">
-
-            <br>
-            <div class="row">
-                <div class="col-sm-11">
-                    
-                </div>
-                <div class="col-sm-1">
-                    <a href="#" class="boton-imprimir" onclick="window.print(); return false;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            
-            <div class="row">
-                <div class="col-sm-12 text-center mb-4">
-                    <div class="form-floating">
-                        <h3>Presupuesto</h3>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row"> 
-                  <div class="col-sm-2 mb-5">
-                    <div class="form-floating">
-                        <label for="id" class="font-weight-bold form-label text-dark">ID Presupuesto</label>
-                        <input id="id" type="number" class="bg-light text-dark form-control" th:value="${presupuesto.id}" disabled readonly>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-floating">
-                        <label for="cliente" class="font-weight-bold form-label text-dark">Nombre de Cliente</label>
-                        <input id="cliente" class="bg-light text-dark form-control" type="text" th:value="${presupuesto.cliente.nombre}" disabled readonly>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-floating">
-                        <label for="vehiculo" class="font-weight-bold form-label text-dark">Vehículo</label>
-                        <input id="vehiculo" class="bg-light text-dark form-control" type="text" th:value="${presupuesto.vehiculo.dominio}+' - '+ ${presupuesto.vehiculo.marca}+' '+${presupuesto.vehiculo.modelo}" disabled readonly>
-                    </div>
-                </div>      
-                <div class="col-sm-2">
-                    <div class="form-floating">
-                        <label for="fecha" class="font-weight-bold form-label text-dark">Fecha</label>
-                        <input id="fecha" type="date" class="bg-light text-dark form-control" th:value="${presupuesto.fecha}" disabled readonly>
-                    </div>
-                </div>
-              
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-floating">
-                        <h5>Detalle de Presupuesto:</h5>
-                    </div>
-
-                </div>
-            </div>
-            
-            <div class="table-responsive mb-3" id="miTabla" style="background-color:  white; padding: 15px; border-radius: 3px;">
-                                                        <table class="table table-sm table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="col-sm-1">Cantidad</th>
-                                                                    <th class="col-sm-7">Artículo</th>
-                                                                    <th class="col-sm-2">Precio</th>
-                                                                    <th class="col-sm-2 text-end">SubTotal</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody th:each="articulo : ${presupuesto.detalle}" th:if="${articulo.nombre} != null">
-                                                                <tr>
-                                                                    <td th:text="${articulo.cantidad}"></td>
-                                                                    <td th:text="${articulo.nombre}"></td>
-                                                                    <td th:text="'$'+${articulo.precio}"></td>
-                                                                    <td th:text="'$'+${articulo.total}"></td>
-                                                                </tr>
-                                                            </tbody>
-                                                             <tr>
-                                                                    <th scope="col"></th>
-                                                                    <th scope="col"></th>
-                                                                    <th scope="col">TOTAL</th>
-                                                                    <th th:text="'$'+${totalServicio}"></th>
-                                                                </tr>
-                                                        </table>
-                                                    </div>
-            
-        </div>
-
-<!--
-        
- <div class="container">
-  <div class="wrapper">
-
-    
-  </div>
-  </div>
-       -->
-        
-
-
-        <footer class="footer">
-            <div class="container">
-                <img src="/membrete_inferior.jpg" alt="Imagen Footer">
-            </div>
-        </footer>
-
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    </body>
-</html>
+                    <body>
+                        <div class="container">
+                            <div class="card">
+                                <div class="card-expand-lg card-img ">
+                                    <img src="/membrete_sup.jpg" alt="Imagen Navbar">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <br>
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a href="#" class="boton-imprimir" onclick="window.print(); return false;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 text-center mb-4">
+                                        <div class="form-floating">
+                                            <h3>Presupuesto</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-sm-2 mb-5">
+                                        <div class="form-floating">
+                                            <label for="id" class="font-weight-bold form-label text-dark">ID Presupuesto</label>
+                                            <input id="id" type="number" class="bg-light text-dark form-control" th:value="${presupuesto.id}" disabled readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-floating">
+                                            <label for="cliente" class="font-weight-bold form-label text-dark">Nombre de Cliente</label>
+                                            <input id="cliente" class="bg-light text-dark form-control" type="text" th:value="${presupuesto.cliente.nombre}" disabled readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-floating">
+                                            <label for="vehiculo" class="font-weight-bold form-label text-dark">Vehículo</label>
+                                            <input id="vehiculo" class="bg-light text-dark form-control" type="text" th:value="${presupuesto.vehiculo.dominio}+' - '+ ${presupuesto.vehiculo.marca}+' '+${presupuesto.vehiculo.modelo}" disabled readonly>
+                                        </div>
+                                    </div>      
+                                    <div class="col-sm-2">
+                                        <div class="form-floating">
+                                            <label for="fecha" class="font-weight-bold form-label text-dark">Fecha</label>
+                                            <input id="fecha" type="date" class="bg-light text-dark form-control" th:value="${presupuesto.fecha}" disabled readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-floating">
+                                            <h5>Detalle de Presupuesto:</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive mb-3" id="miTabla" style="background-color:  white; padding: 15px; border-radius: 3px;">
+                                    <table class="table table-sm table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-sm-1">Cantidad</th>
+                                                <th class="col-sm-7">Artículo</th>
+                                                <th class="col-sm-2">Precio</th>
+                                                <th class="col-sm-2 text-end">SubTotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody th:each="articulo : ${presupuesto.detalle}" th:if="${articulo.nombre} != null">
+                                            <tr>
+                                                <td th:text="${articulo.cantidad}"></td>
+                                                <td th:text="${articulo.nombre}"></td>
+                                                <td th:text="'$'+${articulo.precio}"></td>
+                                                <td th:text="'$'+${articulo.total}"></td>
+                                            </tr>
+                                        </tbody>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col">TOTAL</th>
+                                            <th th:text="'$'+${totalServicio}"></th>
+                                        </tr>
+                                    </table>
+                                </div>
+                        </div>
+                        <footer class="footer">
+                            <div class="container">
+                                <img src="/membrete_inf.jpg" alt="Imagen Footer">
+                            </div>
+                        </footer>
+                        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+                    </body>
+                    </html>
 
 
 

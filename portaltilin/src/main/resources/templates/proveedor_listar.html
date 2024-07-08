@@ -32,33 +32,54 @@
                 <div class="card bg-dark">  
                     <div class="card-header bg-dark text-white">
 
-                        <div class="row">
-                            <div class="mb-4 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                        <div class="row mb-2">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                                 <a th:href="@{/proveedor/listar}" type="button" class="form-floating mb-2 button btn btn-outline-danger">                                      
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                                     </svg>  <h5>Proveedor</h5>
                                 </a>    
                             </div>   
-                            <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">
+                            <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">
                                 <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                     <h3>Lista de Proveedores</h3>
                                 </div>
                             </div>                    
-                            <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">    
+                            <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">    
                                 <div th:if="${exito != null}" class="btn btn-outline-warning">
                                     <h5>Mensaje:</h5>
                                     <h6 th:text="${exito}"></h6>
                                 </div>                                                   
                             </div> 
-                            <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2 text-end">    
-                                <a th:href="@{/proveedor/registrar}" title="Registrar nuevo Cliente" type="button" class="form-floating mb-2 button btn btn-outline-warning">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">    
+                                <a th:href="@{/proveedor/registrar}" title="Registrar nuevo Proveedor" type="button" class="form-floating mb-2 button btn btn-outline-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                                     </svg>  <h5>Nuevo</h5>
                                 </a>
                             </div>
                         </div>
+                        
+                            <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Registrar Proveedor</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/proveedor/registrar}" class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                </svg>  
+                                    <h6 class="text-warning">Nuevo</h6> 
+                                </a> </div>
+                        </div>
+                        
+                        <div class="d-block d-md-none mb-2">    
+                                <div th:if="${exito != null}" class="btn btn-outline-warning">
+                                    <h5>Mensaje:</h5>
+                                    <h6 th:text="${exito}"></h6>
+                                </div>                                                   
+                            </div> 
+                        
                         <div class="table-responsive">
                             <table class="table table-dark table-hover table-sm">
                                 <thead>
@@ -67,12 +88,11 @@
                                             <a th:href="@{/proveedor/listarIdAsc}" title="Ordenar Lista por ID ASC" type="button" style="color: white">
                                                 ID
                                             </a></th>
-                                        <th class="col-sm-4"> 
+                                        <th class="col-sm-5"> 
                                             <a th:href="@{/proveedor/listarNombreAsc}" title="Ordenar Lista Alfabeticamente" type="button" style="color: white">
                                                 NOMBRE DE PROVEEDOR
                                             </a></th>
-                                        <th class="col-sm-2">DNI/CUIT</th>                                                          
-                                        <th class="col-sm-3">LOCALIDAD</th>                                                             
+                                        <th class="col-sm-4">DNI/CUIT</th>                                                                                                                    
                                         <th class="col-sm-1 text-center">VER</th>                                                             
                                         <th class="col-sm-1 text-center">MODIFICAR</th>                                                        
                                     </tr>
@@ -81,8 +101,7 @@
                                     <tr>
                                         <th th:text="${proveedor.id}"></th>
                                         <td th:text="${proveedor.nombre}"></td>
-                                        <td th:text="${proveedor.cuit}"></td>
-                                        <td th:text="${proveedor.localidad}"></td>                                      
+                                        <td th:text="${proveedor.cuit}"></td>                                     
                                         <td class="text-center">
                                             <a th:href="@{/proveedor/mostrar/__${proveedor.id}__}" type="button" class="btn btn-outline-danger" title="Ver Proveedor">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-exclamation" viewBox="0 0 16 16">

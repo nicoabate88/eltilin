@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.entidades;
 
 import java.util.Date;
@@ -11,7 +10,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Proveedor {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -106,7 +105,5 @@ public class Proveedor {
     public String toString() {
         return "Proveedor{" + "id=" + id + ", nombre=" + nombre + ", cuit=" + cuit + ", localidad=" + localidad + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + ", fechaAlta=" + fechaAlta + '}';
     }
-    
-    
-    
+
 }

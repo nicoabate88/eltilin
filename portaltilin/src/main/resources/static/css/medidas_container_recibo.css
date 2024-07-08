@@ -43,8 +43,8 @@ body, html {
     
     #tablaAlturaEliminar {
             
-       min-height: 335px; /* Altura total menos el navbar (56px) */
-       max-height: 335px;  
+       min-height: 330px; /* Altura total menos el navbar (56px) */
+       max-height: 330px;  
        overflow-y: auto;
    
     }
@@ -57,12 +57,6 @@ body, html {
    
     }
    
-
-    #logo {
-        width: 240px;
-        height: 60px;
-
-    }
       
      
      

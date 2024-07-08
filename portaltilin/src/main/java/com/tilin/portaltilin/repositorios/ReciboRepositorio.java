@@ -21,6 +21,9 @@ public interface ReciboRepositorio extends JpaRepository<Recibo, Long> {
     
     @Query("SELECT r FROM Recibo r WHERE r.estado != 'ELIMINADO'")
     public ArrayList<Recibo> buscarRecibos();
+    
+    @Query("SELECT r FROM Recibo r WHERE cliente_id = :id")
+    public ArrayList<Recibo> buscarReciboIdCliente(@Param("id") Long id);
 
 
 }

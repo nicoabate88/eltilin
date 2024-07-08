@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.servicios;
 
 import com.tilin.portaltilin.entidades.Cuentap;
@@ -19,16 +18,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CuentapServicio {
-    
+
     @Autowired
     private ProveedorRepositorio proveedorRepositorio;
     @Autowired
     private CuentapRepositorio cuentapRepositorio;
     @Autowired
     private TransaccionpRepositorio transaccionpRepositorio;
-    
-    
-     @Transactional
+
+    @Transactional
     public void crearCuenta(Long idProveedor) {
 
         Proveedor proveedor = new Proveedor();
@@ -46,7 +44,7 @@ public class CuentapServicio {
         cuentapRepositorio.save(cuentap);
 
     }
-    
+
     @Transactional
     public void eliminarCuenta(Long idProveedor) {
 
@@ -55,13 +53,13 @@ public class CuentapServicio {
         cuentapRepositorio.deleteById(id);
 
     }
-    
+
     public Cuentap buscarCuenta(Long id) {
 
         return cuentapRepositorio.getById(id);
     }
-    
-        public ArrayList<Cuentap> buscarCuentas() {
+
+    public ArrayList<Cuentap> buscarCuentas() {
 
         ArrayList<Cuentap> listaCuentas = new ArrayList();
 
@@ -69,8 +67,8 @@ public class CuentapServicio {
 
         return listaCuentas;
     }
-        
-       public ArrayList<Cuentap> buscarCuentasIdDesc() {
+
+    public ArrayList<Cuentap> buscarCuentasIdDesc() {
 
         ArrayList<Cuentap> listaCuentas = buscarCuentas();
 
@@ -98,8 +96,8 @@ public class CuentapServicio {
 
         return listaCuentas;
 
-    }    
-        
+    }
+
     @Transactional
     public void agregarTransaccionCuenta(Long idTransaccion) {
 
@@ -112,9 +110,9 @@ public class CuentapServicio {
         }
 
         Long idProveedor = transaccion.getProveedor().getId();
-       
+
         Cuentap cuenta = cuentapRepositorio.buscarCuentaIdProveedor(idProveedor);
-        
+
         List<Transaccionp> transacciones = cuenta.getTransaccion();
         transacciones.add(transaccion);
         cuenta.setTransaccion(transacciones);
@@ -123,12 +121,13 @@ public class CuentapServicio {
             saldo = saldo + t.getImporte();
         }
 
-        cuenta.setSaldo(saldo);
+        double saldoRed = Math.round(saldo * 100.0) / 100.0;
+        cuenta.setSaldo(saldoRed);
 
         cuentapRepositorio.save(cuenta);
 
-
     }
+
     @Transactional
     public void modificarTransaccionCuenta(Transaccionp transaccion) {
 
@@ -149,12 +148,14 @@ public class CuentapServicio {
             saldo = saldo + tr.getImporte();
         }
 
-        cuenta.setSaldo(saldo);
+        double saldoRed = Math.round(saldo * 100.0) / 100.0;
+
+        cuenta.setSaldo(saldoRed);
 
         cuentapRepositorio.save(cuenta);
 
     }
-    
+
     @Transactional
     public void eliminarTransaccionCuenta(Transaccionp transaccion) {
 
@@ -175,10 +176,12 @@ public class CuentapServicio {
             saldo = saldo + tr.getImporte();
         }
 
-        cuenta.setSaldo(saldo);
+        double saldoRed = Math.round(saldo * 100.0) / 100.0;
+
+        cuenta.setSaldo(saldoRed);
 
         cuentapRepositorio.save(cuenta);
 
     }
-    
+
 }

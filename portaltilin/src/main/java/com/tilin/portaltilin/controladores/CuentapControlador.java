@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.controladores;
 
 import com.tilin.portaltilin.entidades.Cuentap;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cuentap")
 @PreAuthorize("hasRole('ROLE_admin')")
 public class CuentapControlador {
-    
+
     @Autowired
     private CuentapServicio cuentapServicio;
     @Autowired
@@ -29,27 +28,28 @@ public class CuentapControlador {
     @Autowired
     private CompraServicio compraServicio;
     @Autowired
-    private PagoServicio pagoServicio;        
-    
+    private PagoServicio pagoServicio;
+
     String saldo;
-    
+
     @GetMapping("/listar")
     public String listar(ModelMap modelo) {
-        
+
         saldo = "";
         Double total = 0.0;
         ArrayList<Cuentap> cuentas = cuentapServicio.buscarCuentas();
-        for(Cuentap cuenta : cuentas){
+        for (Cuentap cuenta : cuentas) {
             total = total + cuenta.getSaldo();
         }
-        
+
         saldo = convertirNumeroMiles(total);
-        
+
         modelo.addAttribute("cuentas", cuentapServicio.buscarCuentasNombreAsc());
         modelo.put("saldo", saldo);
 
         return "cuentap_listar.html";
     }
+
     @GetMapping("/listarIdAsc")
     public String listarIdAsc(ModelMap modelo) {
 
@@ -76,7 +76,7 @@ public class CuentapControlador {
 
         return "cuentap_listar.html";
     }
-    
+
     @GetMapping("/mostrar/{id}")
     public String mostrar(@PathVariable Long id, ModelMap modelo) {
 
@@ -90,8 +90,8 @@ public class CuentapControlador {
         return "cuentap_mostrar.html";
 
     }
-    
-       @GetMapping("/mostrarPdf/{id}")
+
+    @GetMapping("/mostrarPdf/{id}")
     public String mostrarPdf(@PathVariable Long id, ModelMap modelo) {
 
         Cuentap cuenta = cuentapServicio.buscarCuenta(id);
@@ -104,7 +104,7 @@ public class CuentapControlador {
         return "cuentap_mostrarPdf.html";
 
     }
-    
+
     @GetMapping("/mostrarTransaccion/{id}")
     public String mostrarTransaccion(@PathVariable Long id, ModelMap modelo) {
 
@@ -128,8 +128,8 @@ public class CuentapControlador {
         }
 
     }
-    
-        public String convertirNumeroMiles(Double num) {    //metodo que sirve para dar formato separador de miles a total
+
+    public String convertirNumeroMiles(Double num) {    //metodo que sirve para dar formato separador de miles a total
 
         DecimalFormat formato = new DecimalFormat("#,##0.00");
         String numeroFormateado = formato.format(num);
@@ -137,5 +137,5 @@ public class CuentapControlador {
         return numeroFormateado;
 
     }
-    
+
 }

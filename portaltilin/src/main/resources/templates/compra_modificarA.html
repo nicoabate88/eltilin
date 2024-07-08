@@ -65,22 +65,22 @@
                             </div>
                         </div>
                         
-                         <div class="row mb-3">
-                          <div class="col-sm-2">
+                         <div class="row mb-2">
+                          <div class="d-none d-sm-block col-sm-2">
                                 <div class="form-floating">
                                     <label for="fecha" class="form-label text-white">Fecha</label>
                                     <input id="fecha" type="text" class="bg-dark text-white form-control" th:value="${compra.fecha}" disabled readonly>
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="form-floating">    
+                                <div class="form-floating mb-2">    
                                     <label for="tipoComprobante">Tipo</label>
                                     <input id="tipoComprobante" type="text" class="bg-dark text-white form-control" th:value="${compra.tipoComprobante}" disabled readonly>                                       
                                 </div>
                             </div>
                       
                         <div class="col-sm-3">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="numero" class="form-label text-white">Número de Comprobante</label>
                                     <input type="number" id="numero" class="bg-dark text-white form-control" th:value="${compra.numeroComprobante}" disabled readonly>
                                 </div>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="form-floating col-sm-10">
+                            <div class="form-floating d-none d-sm-block col-sm-10">
                                 <label for="observacion" class="form-label text-white">Observación</label>
                                 <input id="observacion" type="textarea" class="bg-dark text-white form-control" th:value="${compra.observacion}" disabled readonly>  
                             </div>
@@ -102,9 +102,9 @@
                         <form class="formulario" th:action="@{/compra/addArticuloM}" method="POST">
                         <input hidden th:value="${compra.id}" name="idCompra">  
                         
-                        <div class="row">
-                            <div class="col-sm-7 mb-4">
-                                <div class="form-floating">
+                        <div class="row mb-2">
+                            <div class="col-sm-7 ">
+                                <div class="form-floating mb-2">
                                     <label for="articulo" class="form-label text-white">Seleccione Artículo</label>
                                     <select id="articulo" class="bg-dark text-white form-control" name="idArticulo">
                                         <option value="" selected disabled>Seleccione Artículo</option>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">    
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="cantidad" class="form-label text-white">Ingrese Cantidad</label>
                                     <input type="number" step="0.01" min="0" max="9999999999" id="cantidad" class="bg-dark text-white form-control" name="cantidad" placeholder="Cantidad" th:value="${cantidad}" minlength="0" maxlength="35" size="35">
                                 </div>

@@ -192,8 +192,8 @@ public class PresupuestoServicio {
         presupuesto.setUsuario(usuario);
 
         presupuestoRepositorio.save(presupuesto);
-        
-        for(Detalle d : presupuesto.getDetalle()){
+
+        for (Detalle d : presupuesto.getDetalle()) {
             detalleServicio.modificarDetallePresupuesto(d.getId());
         }
 
@@ -220,9 +220,9 @@ public class PresupuestoServicio {
         if (presu.isPresent()) {
             presupuesto = presu.get();
         }
-        
+
         ArrayList<Detalle> lista = detalleRepositorio.buscarDetallePresupuesto(idPresupuesto);
-        for(Detalle d : lista){
+        for (Detalle d : lista) {
             detalleServicio.modificarDetalle(d.getId());
         }
 
@@ -230,7 +230,7 @@ public class PresupuestoServicio {
         presupuesto.setDetalle(null);
         presupuesto.setTotal(0.0);
         presupuesto.setCliente(null);
-                
+
         presupuestoRepositorio.save(presupuesto);
 
     }

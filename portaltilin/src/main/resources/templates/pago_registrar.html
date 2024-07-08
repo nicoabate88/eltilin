@@ -31,33 +31,46 @@
             <div class="card bg-dark">  
                 <div class="card-header bg-dark text-white">
 
-                    <div class="row">
-                        <div class="mb-3 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                    <div class="row mb-2">
+                        <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                             <div class="form-floating mb-2 btn btn-outline-danger" type="button">                                   
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z"/>
                                 </svg>  <h5>Pago</h5>
                             </div> 
                         </div>   
-                        <div class="col-sm-1 col-md-3 col-lg-3 col-xl-3">
+                        <div class="d-none d-sm-block col-md-3 col-lg-3 col-xl-3">
                             <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                 <h3>Orden de Pago</h3>
                             </div>
                         </div>
-                        <div class="col-sm-1 col-md-5 col-lg-5 col-xl-5">    
+                        <div class="d-none d-sm-block col-md-5 col-lg-5 col-xl-5">    
                             <div th:if="${error != null}" class="btn btn-outline-danger">
                                 <h5>Mensaje:</h5>
                                 <h6 th:text="${error}"></h6>
                             </div>
                         </div>
-                        <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2 text-end">   
-                            <a th:href="@{/pago/listar}" title="Ver Pagos" type="button" class="form-floating mb-2 button btn btn-outline-warning">
+                        <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">   
+                            <a th:href="@{/pago/listar}" title="Ir a Lista de Pagos" type="button" class="form-floating mb-2 button btn btn-outline-warning">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z"/>
                                 </svg> <h5>Ver Pagos</h5>
                             </a>
                         </div> 
                     </div>
+                    
+                     <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Orden de Pago</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/pago/listar}" class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1z"/>
+                                </svg>
+                                    <h6 class="text-warning">Pagos</h6> 
+                                </a> </div>
+                        </div>
 
                     <form class="formulario" th:action="@{/pago/agregarValor}" method="POST">
 
@@ -119,12 +132,12 @@
                                 </div>
                             <div class="col-sm-2">
                                 <div class="form-floating">
-                                    <label for="fechaV" class="form-label text-white">Ingrese Fecha</label>
+                                    <label for="fechaV" class="form-label text-white">Seleccione Fecha</label>
                                     <input id="fechaV" type="date" class="bg-dark text-white form-control" name="fechaP" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
                                 </div>
                             </div>
                              <div class="col-sm-1">  
-                                    <div class="form-floating text-center">
+                                    <div class="form-floating">
                                         <label class="form-label text-white"></label><br><br>
                                         <button type="submit" class="btn btn-outline-warning" title="Agregar Valores">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -150,7 +163,7 @@
                                 </div>
                             </div>
                               <div class="col-sm-1">  
-                                    <div class="form-floating text-center">
+                                    <div class="form-floating">
                                         <label class="form-label text-white"></label><br><br>
                                         <button type="submit" class="btn btn-outline-warning" title="Agregar Cheque">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -170,7 +183,7 @@
                                         <th class="col-sm-1"></th>
                                         <th class="col-sm-2">TIPO VALOR</th>
                                         <th class="col-sm-2">IMPORTE</th>
-                                        <th class="col-sm-2">NUMERO</th>
+                                        <th class="col-sm-2">NÚMERO</th>
                                         <th class="col-sm-2">FECHA</th>
                                         <th class="col-sm-1">ACCIÓN</th> 
                                         <th class="col-sm-2"></th>

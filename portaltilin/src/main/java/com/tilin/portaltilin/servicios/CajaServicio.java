@@ -80,7 +80,8 @@ public class CajaServicio {
             saldo = saldo + v.getImporte();
         }
 
-        caja.setSaldo(saldo);
+        double saldoRed = Math.round(saldo * 100.0) / 100.0;
+        caja.setSaldo(saldoRed);
 
         cajaRepositorio.save(caja);
 
@@ -92,7 +93,7 @@ public class CajaServicio {
         Double saldo = 0.0;
         Long idCaja = id;
         int numeroInt = id.intValue();
-        
+
         ArrayList<Caja> listaCajas = (ArrayList<Caja>) cajaRepositorio.findAll();
         for (Caja lista : listaCajas) {
             if (lista.getNombre().equalsIgnoreCase(cja)) {
@@ -103,16 +104,18 @@ public class CajaServicio {
         Caja caja = cajaRepositorio.getById(idCaja);
 
         ArrayList<Valor> lista = valorRepositorio.buscarValorCaja(idCaja);
-         for (int i = 0; i < lista.size(); i++) {
+        for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getId() == numeroInt) {
                 lista.remove(i);
             }
         }
-        
+
         for (Valor v : lista) {
             saldo = saldo + v.getImporte();
         }
-        caja.setSaldo(saldo);
+
+        double saldoRed = Math.round(saldo * 100.0) / 100.0;
+        caja.setSaldo(saldoRed);
         caja.setValor(lista);
 
         cajaRepositorio.save(caja);

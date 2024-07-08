@@ -50,27 +50,27 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="mb-3 col-sm-1">               
-                                <div class="form-floating">
+                        <div class="row mb-2">
+                            <div class="col-sm-1">               
+                                <div class="form-floating mb-2">
                                     <label for="id" class="form-label text-white">ID</label>
                                     <input type="text" id="id" class="bg-dark text-white form-control" th:value="${presupuesto.id}" disabled readonly>
                                 </div>
                             </div>
                             <div class="col-sm-5">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="cliente" class="form-label text-white">Nombre de Cliente</label>
                                     <input id="cliente" class="bg-dark text-white form-control" type="text" th:value="${presupuesto.cliente.nombre}" disabled readonly>
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="vehiculo" class="form-label text-white">Vehículo</label>
                                     <input id="vehiculo" class="bg-dark text-white form-control" type="text" th:value="${presupuesto.vehiculo.marca}" disabled readonly>
                                 </div>
                             </div>      
                             <div class="col-sm-2">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="fecha" class="form-label text-white">Fecha de Servicio</label>
                                     <input id="fecha" type="date" class="bg-dark text-white form-control" th:value="${presupuesto.fecha}" disabled readonly>
                                 </div>
@@ -105,8 +105,8 @@
                                     <tr>
                                         <td th:text="${articulo.cantidad}"></td>
                                         <td th:text="${articulo.nombre}+' '+${articulo.codigo}"></td>
-                                        <td th:text="${articulo.precio}"></td>
-                                        <td th:text="${articulo.total}"></td>
+                                        <td th:text="'$'+${articulo.precio}"></td>
+                                        <td th:text="'$'+${articulo.total}"></td>
                                     </tr>
                                 </tbody>
                                 <tr>

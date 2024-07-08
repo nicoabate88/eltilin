@@ -35,33 +35,54 @@
                 <div class="card bg-dark">  
                     <div class="card-header bg-dark text-white">
 
-                        <div class="row">
-                            <div class="mb-4 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                        <div class="row mb-2">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                                 <a th:href="@{/presupuesto/listar}" type="button" class="form-floating mb-2 btn btn-outline-danger">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-calculator-fill" viewBox="0 0 16 16">
                                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5m0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5z"/>
                                     </svg>  <h5>Presupuesto</h5>
                                 </a>
                             </div>
-                            <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">
+                            <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">
                                 <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                     <h3>Lista de Presupuestos</h3>
                                 </div>
                             </div>
-                            <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">    
+                            <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">    
                                 <div th:if="${exito != null}" class="btn btn-outline-warning">
                                     <h5>Mensaje:</h5>
                                     <h6 th:text="${exito}"></h6>
                                 </div>                                                   
                             </div>
-                            <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2 text-end">    
-                                <a th:href="@{/presupuesto/registrar}" title="Registrar Servicio" type="button" class="form-floating mb-2 button btn btn-outline-warning">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">    
+                                <a th:href="@{/presupuesto/registrar}" title="Registrar Presupuesto" type="button" class="form-floating mb-2 button btn btn-outline-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-calculator-fill" viewBox="0 0 16 16">
                                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5m0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5z"/>
                                     </svg>   <h5>Crear</h5>
                                 </a>
                             </div>
                         </div>
+                        
+                        <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Lista de Presupuestos</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                              <a th:href="@{/presupuesto/registrar}" class="text-warning">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calculator-fill" viewBox="0 0 16 16">
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5m0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5z"/>
+                                        </svg>
+                                    <h6 class="text-warning">Nuevo</h6> 
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="d-block d-md-none mb-2">    
+                                <div th:if="${exito != null}" class="btn btn-outline-warning">
+                                    <h5>Mensaje:</h5>
+                                    <h6 th:text="${exito}"></h6>
+                                </div>                                                   
+                            </div>  
 
                         <div class="table-responsive">
                             <table class="table table-dark table-hover table-sm">
@@ -89,7 +110,7 @@
                                     <tr>
                                         <td th:text="${presupuesto.id}"></td>
                                         <td th:text="${presupuesto.cliente.nombre}"></td>
-                                        <td th:text="${presupuesto.vehiculo.dominio}+' - '+ ${presupuesto.vehiculo.marca}+' '+${presupuesto.vehiculo.modelo}"></td>
+                                        <td th:text="${presupuesto.vehiculo.marca}+' '+${presupuesto.vehiculo.modelo}"></td>
                                         <td th:text="${presupuesto.fecha}"></td>
                                         <td class="text-center"><a th:href="@{/presupuesto/mostrar/__${presupuesto.id}__}" type="button" class="btn btn-outline-danger" title="Ver Presupuesto">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">

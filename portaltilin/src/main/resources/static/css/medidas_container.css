@@ -4,11 +4,14 @@ body, html {
 }
 /* Estilo para que el contenedor tenga una altura mínima y se ajuste a su contenido */
 .container {
+    
     min-height: calc(100% - 92px); /* Altura total menos el navbar (56px) */
     max-height: calc(100% - 92px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
+    
 }
 /* Estilo para que las card se expandan y ocupen todo el espacio vertical disponible */
 .card {
@@ -16,13 +19,7 @@ body, html {
     overflow-y: auto;
 
 }
-
-#logo {
-    width: 240px;
-    height: 60px;
-
-}
-
+/*
 .card-footer {
     position: absolute;
     bottom: 0;
@@ -30,7 +27,7 @@ body, html {
 
 }
 
-     
+     */
      
 
 

@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.entidades;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Caja {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -75,9 +74,5 @@ public class Caja {
     public String toString() {
         return "Caja{" + "id=" + id + ", nombre=" + nombre + ", saldo=" + saldo + ", saldoAcumulado=" + saldoAcumulado + ", valor=" + valor + '}';
     }
-    
-    
-    
-}
 
-   
+}

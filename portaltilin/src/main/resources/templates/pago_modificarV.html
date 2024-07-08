@@ -71,14 +71,14 @@
                                 </div>  
                             </div>
                              <div class="col-sm-3">    
-                                    <div class="form-floating">
+                                    <div class="form-floating mb-2">
                                         <label for="importe" class="form-label text-white">Total Pago</label>
                                         <input type="text" id="importe" class="bg-dark text-white form-control" th:value="'$'+${totalPago}"disabled readonly>
                                     </div>
                                 </div>
                         </div>
                         <div class="row">
-                        <div class="col-sm-10">
+                        <div class="d-none d-sm-block col-sm-10">
                         <div class="form-floating mb-4">
                             <label for="observacion" class="form-label text-white">Observación</label>
                             <input type="text" id="observacion" class="bg-dark text-white form-control" name="observacion" th:value="${pago.observacion}" disabled readonly>
@@ -106,14 +106,14 @@
                                 </div>
                             </div>
                          <div class="col-sm-2">    
-                                    <div class="form-floating">
+                                    <div class="form-floating mb-2">
                                         <label for="importe" class="form-label text-white">Ingrese Importe</label>
                                         <input type="number" step="0.01" min="0" max="9999999999" id="precio" class="bg-dark text-white form-control" name="importe"
                                                placeholder="Ingrese Importe" minlength="0" maxlength="99999999999" size="99999999999" value="0">
                                     </div>
                                 </div>
                             <div class="col-sm-2">    
-                                    <div class="form-floating">
+                                    <div class="form-floating mb-2">
                                         <label for="numero" class="form-label text-white">Ingrese Número</label>
                                         <input type="number" min="0" max="9999999999" id="precio" class="bg-dark text-white form-control" name="numero"
                                                placeholder="Ingrese Número" minlength="0" maxlength="99999999999" size="99999999999" value="0">
@@ -121,12 +121,12 @@
                                 </div>
                             <div class="col-sm-2">
                                 <div class="form-floating">
-                                    <label for="fechaV" class="form-label text-white">Fecha de Cheque</label>
+                                    <label for="fechaV" class="form-label text-white">Seleccione Fecha</label>
                                     <input id="fechaV" type="date" class="bg-dark text-white form-control" name="fechaP" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
                                 </div>
                             </div>
                         <div class="col-sm-1">  
-                                    <div class="form-floating text-center">
+                                    <div class="form-floating">
                                         <label class="form-label text-white"></label><br><br>
                                         <button type="submit" class="btn btn-outline-warning" title="Agregar Valores">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                               <div class="col-sm-1">  
-                                    <div class="form-floating text-center">
+                                    <div class="form-floating">
                                         <label class="form-label text-white"></label><br><br>
                                         <button type="submit" class="btn btn-outline-warning" title="Agregar Valores">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -169,7 +169,7 @@
                                         <th class="col-sm-1"></th>
                                         <th class="col-sm-2">TIPO VALOR</th>
                                         <th class="col-sm-2">IMPORTE</th>
-                                        <th class="col-sm-2">NUMERO</th>
+                                        <th class="col-sm-2">NÚMERO</th>
                                         <th class="col-sm-2">FECHA</th>
                                         <th class="col-sm-1">ACCIÓN</th> 
                                         <th class="col-sm-2"></th>  

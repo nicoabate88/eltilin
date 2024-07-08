@@ -144,8 +144,7 @@ public class VehiculoServicio {
         ArrayList<Servicio> listaServicio = servicioRepositorio.buscarServicioIdVehiculo(id);
         ArrayList<Presupuesto> listaPresupuesto = presupuestoRepositorio.buscarPresupuestoIdCliente(id);
 
-        if (listaServicio == null || listaServicio.isEmpty()
-                && listaPresupuesto == null || listaPresupuesto.isEmpty()) {
+        if (listaServicio.isEmpty() && listaPresupuesto.isEmpty()) {
 
             vehiculoRepositorio.deleteById(id);
 

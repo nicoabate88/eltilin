@@ -44,7 +44,7 @@ public class ServicioControlador {
     @Autowired
     private DetalleServicio detalleServicio;
     @Autowired
-    private DetalleRepositorio detalleRepositorio;        
+    private DetalleRepositorio detalleRepositorio;
 
     ArrayList<Detalle> detalles = new ArrayList(); //ArrayList para crear los detalles que se guardaran en el servicio
     ArrayList<Detalle> detallesM = new ArrayList();  //ArrayList para modificar los detalles que se guardaran en la modificacion del servicio
@@ -58,30 +58,30 @@ public class ServicioControlador {
     Long idVehiculo;
     String fecha;
     String observacion;
-    
-     @GetMapping("/registrar")
-     public String registrarCliente(ModelMap modelo){
-         
-         detalles.clear();
-        
+
+    @GetMapping("/registrar")
+    public String registrarCliente(ModelMap modelo) {
+
+        detalles.clear();
+
         modelo.addAttribute("clientes", clienteServicio.buscarClientesNombreAsc());
-        
+
         return "servicio_registrarCliente.html";
     }
-    
+
     @PostMapping("/registrarC")
     public String procesarOpcionSeleccionada(@RequestParam("cliente") Long cliente, ModelMap modelo) {
-      
+
         idCliente = cliente;
-        
+
         modelo.put("idCliente", idCliente);
         modelo.put("cliente", clienteServicio.buscarCliente(idCliente));
         modelo.addAttribute("vehiculos", vehiculoServicio.buscarVehiculoIdCliente(idCliente));
         modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
-        
+
         return "servicio_registrar.html";
     }
-   
+
     @GetMapping("/registro")
     public String registro(HttpSession session, ModelMap modelo) throws ParseException {
 
@@ -179,7 +179,6 @@ public class ServicioControlador {
     public String addArticulo(@RequestParam Long cliente, @RequestParam Long vehiculo, @RequestParam String fechaA,
             @RequestParam String observacionA, @RequestParam Long idArticulo, @RequestParam Double cantidad, @RequestParam Double precio, ModelMap modelo) {
 
-      
         idVehiculo = vehiculo;
         fecha = fechaA;
         observacion = observacionA;
@@ -314,7 +313,7 @@ public class ServicioControlador {
         listaPersistida.clear();
         sumar.clear();
         restar.clear();
-        
+
         Servicio servicio = servicioServicio.buscarServicio(id);
 
         listaPersistida.addAll(servicio.getDetalle());
@@ -337,7 +336,7 @@ public class ServicioControlador {
 
     @GetMapping("/borrarArticuloA/{id}")  //metodo para BORRAR ARTICULO de Servicio
     public String borrarArticuloA(@PathVariable Long id, ModelMap modelo) {
-        
+
         Detalle detalle = new Detalle();
         Optional<Detalle> det = detalleRepositorio.findById(id);
         if (det.isPresent()) {
@@ -346,7 +345,7 @@ public class ServicioControlador {
 
         sumar.add(detalle);
         detalleServicio.modificarDetalle(id);
-        
+
         int numeroInt = id.intValue();  //convierto en int id de detalle que llega para buscarlo y eliminarlo del array
         Double totalServicio = 0.0; //variable para ir almacenado total de detalles pertenecientes a un mismo servicio
 
@@ -390,12 +389,15 @@ public class ServicioControlador {
         } else {
             detalle.setPrecio(articulo.getPrecio());
         }
-        detalle.setTotal(detalle.getPrecio() * cantidad);
+
+        double total = detalle.getPrecio() * cantidad;
+        double totalRedondeado = Math.round(total * 100.0) / 100.0;
+        detalle.setTotal(totalRedondeado);
         detalle.setArticulo(articulo);
 
         detalleServicio.crearDetalle(detalle.getNombre(), detalle.getCodigo(), detalle.getCantidad(), detalle.getPrecio(), detalle.getTotal(), detalle.getArticulo(), "SERVICIO");
         detalle.setId(detalleServicio.buscarUltimo());
-        
+
         restar.add(detalle);
         listaPersistida.add(detalle);
 
@@ -421,20 +423,20 @@ public class ServicioControlador {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
         servicioServicio.modificarServicio(idServicio, idCliente, idVehiculo, fecha, observacion, total, listaPersistida, logueado.getId());
-        
-        if(!restar.isEmpty()){
-        for(Detalle detalle : restar){                    //paso a Articulo para restar de stock
-        articuloServicio.stockArtResta(detalle);
+
+        if (!restar.isEmpty()) {
+            for (Detalle detalle : restar) {                    //paso a Articulo para restar de stock
+                articuloServicio.stockArtResta(detalle);
+            }
         }
+
+        if (!sumar.isEmpty()) {
+            for (Detalle detalle : sumar) {                    //paso a Articulo para sumar de stock
+                articuloServicio.stockArtSuma(detalle);
+                detalleServicio.modificarDetalle(detalle.getId());
+            }
         }
-        
-        if(!sumar.isEmpty()){
-        for(Detalle detalle : sumar){                    //paso a Articulo para sumar de stock
-        articuloServicio.stockArtSuma(detalle);
-        detalleServicio.modificarDetalle(detalle.getId());
-        }
-        }
-        
+
         String totalServicio = convertirNumeroMiles(total);
 
         modelo.put("servicio", servicioServicio.buscarServicio(idServicio));
@@ -460,13 +462,13 @@ public class ServicioControlador {
 
     @GetMapping("/elimina/{id}")
     public String elimina(@PathVariable Long id, ModelMap modelo) {
-        
+
         Servicio servicio = servicioServicio.buscarServicio(id);
-        
-        for(Detalle detalle : servicio.getDetalle()){                    //paso a Articulo para sumar de stock
-        articuloServicio.stockArtSuma(detalle);
-        detalleServicio.modificarDetalle(detalle.getId());
-        
+
+        for (Detalle detalle : servicio.getDetalle()) {                    //paso a Articulo para sumar de stock
+            articuloServicio.stockArtSuma(detalle);
+            detalleServicio.modificarDetalle(detalle.getId());
+
         }
 
         servicioServicio.eliminarServicio(id);
@@ -492,8 +494,8 @@ public class ServicioControlador {
 
         return "servicio_listarPdf";
     }
-    
-      public String convertirNumeroMiles(Double num) {    //metodo que sirve para dar formato separador de miles a total
+
+    public String convertirNumeroMiles(Double num) {    //metodo que sirve para dar formato separador de miles a total
 
         DecimalFormat formato = new DecimalFormat("#,##0.00");
         String numeroFormateado = formato.format(num);

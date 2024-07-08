@@ -29,21 +29,21 @@ public class CuentaControlador {
     private ServicioServicio servicioServicio;
     @Autowired
     private ReciboServicio reciboServicio;
-    
+
     String saldo;
 
     @GetMapping("/listar")
     public String listar(ModelMap modelo) {
-        
+
         saldo = "";
         Double total = 0.0;
         ArrayList<Cuenta> cuentas = cuentaServicio.buscarCuentas();
-        for(Cuenta cuenta : cuentas){
+        for (Cuenta cuenta : cuentas) {
             total = total + cuenta.getSaldo();
         }
-        
+
         saldo = convertirNumeroMiles(total);
-        
+
         modelo.addAttribute("cuentas", cuentaServicio.buscarCuentasNombreAsc());
         modelo.put("saldo", saldo);
 

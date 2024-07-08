@@ -13,5 +13,7 @@ public interface ArticuloRepositorio extends JpaRepository<Articulo, Long> {
     public Long ultimoArticulo();
     
     Optional<Articulo> findByNombre(String nombre);
+    
+    Optional<Articulo> findByCodigo(String codigo);
 
 }

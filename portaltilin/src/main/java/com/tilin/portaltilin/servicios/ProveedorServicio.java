@@ -27,7 +27,6 @@ public class ProveedorServicio {
     private CompraRepositorio compraRepositorio;
     @Autowired
     private CuentapServicio cuentapServicio;
-    
 
     @Transactional
     public void crearProveedor(String nombre, Long cuit, String localidad, String direccion, Long telefono, String email) throws MiException {
@@ -49,7 +48,7 @@ public class ProveedorServicio {
         proveedor.setFechaAlta(new Date());
 
         proveedorRepositorio.save(proveedor);
-        
+
         cuentapServicio.crearCuenta(buscarUltimo());
     }
 
@@ -132,7 +131,7 @@ public class ProveedorServicio {
             proveedorRepositorio.deleteById(id);
 
             cuentapServicio.eliminarCuenta(id);
-            
+
         } else {
 
             throw new MiException("El Proveedor no puede ser eliminado, tiene Compra o Pago asociado");
@@ -148,7 +147,7 @@ public class ProveedorServicio {
 
         for (Proveedor lista : listaProveedores) {
             if (lista.getNombre().equalsIgnoreCase(nombre)) {
-                throw new MiException("El NOMBRE de Proveedor ya está registrado");
+                throw new MiException("El Nombre de Proveedor ya está registrado");
             }
         }
     }

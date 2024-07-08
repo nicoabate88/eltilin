@@ -34,26 +34,31 @@
                 <div class="card bg-dark">  
                     <div class="card-header bg-dark text-white">
 
-                        <div class="row">
-                            <div class="mb-3 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                        <div class="row mb-2">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                                 <div class="form-floating mb-2 btn btn-outline-danger" type="button">                                   
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
                                     <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
                                     </svg> <h5>Caja</h5>
                                 </div> 
                             </div>   
-                            <div class="col-sm-1 col-md-3 col-lg-3 col-xl-3">
+                            <div class="d-none d-sm-block col-md-3 col-lg-3 col-xl-3">
                                 <div class="d-flex align-items-center text-danger" style="height: 72px;">
-                                    <h3>Saldo de Caja</h3>
+                                    <h3>Lista de Cajas</h3>
+                                    <br>
+                                    <div class=" d-block d-md-none text-end">
+                                    <a th:href="@{/caja/registrar}" title="Registrar Nueva Caja" type="button" class="form-floating btn btn-outline-warning">
+                                       <h5>Nuevo</h5> 
+                                    </a> </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1 col-md-5 col-lg-5 col-xl-5">    
+                            <div class="d-none d-sm-block col-md-5 col-lg-5 col-xl-5">    
                                 <div th:if="${error != null}" class="btn btn-outline-danger">
                                     <h5>Mensaje:</h5>
                                     <h6 th:text="${error}"></h6>
                                 </div>
                             </div>
-                            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 text-end">    
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">    
                                 <a th:href="@{/caja/registrar}" title="Registrar nueva Caja" type="button" class="form-floating mb-2 btn btn-outline-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
                                     <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
@@ -61,22 +66,35 @@
                                 </a>
                             </div>
                         </div>  
+                        
+                        <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Lista de Cajas</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/caja/registrar}" class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                                    <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                                    </svg>
+                                    <h6 class="text-warning">Nuevo</h6> 
+                                </a> </div>
+                        </div>
 
                         <div class="table-responsive">
                             <table class="table table-dark table-hover table-sm">
                                 <thead>
                                     <tr> 
-                                        <th class="col-sm-2"></th>
-                                        <th class="col-sm-1">ID</th>
-                                        <th class="col-sm-3">NOMBRE DE CAJA</th>
-                                        <th class="col-sm-3">SALDO</th>                                                             
-                                        <th class="col-sm-1 text-center">VER</th>                              
-                                        <th class="col-sm-2"></th>                                                        
+                                        <th class=" col-sm-2"></th>
+                                        <th class="col-sm-1 col-md-1 col-lg-1 col-xl-1">ID</th>
+                                        <th class="col-sm-3 col-md-3 col-lg-3 col-xl-3">NOMBRE DE CAJA</th>
+                                        <th class="col-sm-3 col-md-3 col-lg-3 col-xl-3">SALDO</th>                                                             
+                                        <th class="col-sm-2 col-md-1 col-lg-1 col-xl-1 text-center">VER</th>                              
+                                        <th class="col-sm-1 col-md-2 col-lg-2 col-xl-2"></th>                                                        
                                     </tr>
                                 </thead>
                                 <tbody th:each="caja : ${cajas}">
                                     <tr>
-                                        <td></td>
+                                        <td ></td>
                                         <td th:text="${caja.id}"></td>
                                         <td th:text="${caja.nombre}"></td>
                                         <td th:text="'$'+${caja.saldo}"></td>

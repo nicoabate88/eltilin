@@ -99,5 +99,4 @@ public class Detalle {
         this.articulo = articulo;
     }
 
-   
 }

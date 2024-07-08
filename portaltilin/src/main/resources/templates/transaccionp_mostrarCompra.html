@@ -47,36 +47,36 @@
                         </div>                                     
                     </div>
 
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2">               
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-2">
                                 <label for="id" class="form-label text-white">ID Compra</label>
                                 <input type="text" id="id" class="bg-dark text-white form-control" th:value="${compra.id}" disabled readonly>
                             </div>
                         </div>
                         <div class="mb-1 col-sm-1 col-md-8 col-lg-8 col-xl-8">               
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-2">
                                 <label for="nombre" class="form-label text-white">Nombre de Proveedor</label>
                                 <input type="text" id="nombre" class="bg-dark text-white form-control" th:value="${compra.proveedor.nombre}" disabled readonly>
                             </div>
                         </div>
                     </div>  
 
-                    <div class="row mb-3">
+                    <div class="row mb-2">
                         <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2">
-                            <div class="form-floating">
+                            <div class="form-floating mb-2">
                                 <label for="fecha" class="form-label text-white">Fecha</label>
                                 <input id="fecha" type="text" class="bg-dark text-white form-control" th:value="${compra.fecha}" disabled readonly>
                             </div>
                         </div>
                         <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2">               
-                            <div class="form-floating">
+                            <div class="form-floating mb-2">
                                 <label for="tipoComprobante" class="form-label text-white">Tipo</label>
                                 <input type="text" id="tipoComprobante" class="bg-dark text-white form-control" th:value="${compra.tipoComprobante}" disabled readonly>
                             </div>
                         </div>
                         <div class="col-sm-1 col-md-3 col-lg-3 col-xl-3">
-                            <div class="form-floating">
+                            <div class="form-floating mb-2">
                                 <label for="numero" class="form-label text-white">Número de Comprobante</label>
                                 <input type="number" id="numero" class="bg-dark text-white form-control" th:value="${compra.numeroComprobante}" disabled readonly>
                             </div>

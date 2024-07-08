@@ -49,30 +49,23 @@
                                 <h3>Eliminar Recibo</h3>
                             </div>
                         </div>
-                        <div class="col-sm-1 col-md-7 col-lg-7 col-xl-7">    
-                            <div th:if="${error != null}" class="btn btn-outline-danger">
-                                <h5>Mensaje:</h5>
-                                <h6 th:text="${error}"></h6>
-                            </div>
-                        </div>
-                       
                     </div> 
 
-                        <div class="row">
-                            <div class="col-sm-2 mb-3">
+                        <div class="row mb-2">
+                            <div class="col-sm-2 mb-2">
                                 <div class="form-floating">
                                     <label for="id" class="form-label text-white">ID Recibo</label>
                                     <input id="id" class="bg-dark text-white form-control" type="text" th:value="${recibo.id}" disabled readonly>
                                 </div>  
                             </div>
                             <div class="col-sm-7">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="cliente" class="form-label text-white">Nombre de Cliente</label>
                                     <input id="cliente" class="bg-dark text-white form-control" type="text" th:value="${recibo.cliente.nombre}" disabled readonly>
                                 </div>  
                             </div>
                              <div class="col-sm-3">    
-                                    <div class="form-floating">
+                                    <div class="form-floating mb-2">
                                         <label for="importe" class="form-label text-white">Total Recibo</label>
                                         <input type="text" id="importe" class="bg-dark text-white form-control" th:value=" '$'+${recibo.importe}">
                                     </div>
@@ -98,29 +91,36 @@
                                 <thead>
                                     <tr>
                                         <th class="col-sm-2"></th>
-                                        <th class="col-sm-2">TIPO VALOR</th>                                    
-                                        <th class="col-sm-2">NUMERO</th>
-                                        <th class="col-sm-2">FECHA</th>
+                                        <th class="col-sm-2">TIPO VALOR</th> 
                                         <th class="col-sm-2">IMPORTE</th>
+                                        <th class="col-sm-2">NÚMERO</th>
+                                        <th class="col-sm-2">FECHA</th>
                                         <th class="col-sm-2"></th>  
                                     </tr>
                                 </thead>
                                 <tbody th:each="valor : ${recibo.valor}">
                                     <tr>
                                         <td></td>
-                                        <td th:text="${valor.tipoValor}"></td>                                       
+                                        <td th:text="${valor.tipoValor}"></td> 
+                                        <td type="number" step="0.01" th:text="'$'+${valor.importe}"></td>
                                         <td th:text="${valor.numero}"></td>
                                         <td th:text="${valor.fecha}"></td>
-                                        <td type="number" step="0.01" th:text="'$'+${valor.importe}"></td>
                                         <td></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     
+                    <div class="col-sm-1 col-md-7 col-lg-7 col-xl-7">    
+                            <div th:if="${error != null}" class="btn btn-outline-danger">
+                                <h5>Mensaje:</h5>
+                                <h6 th:text="${error}"></h6>
+                            </div>
+                    </div>
+                    
                     <div class="row mb-4">
                         <div class="col-sm-5">    
-                            <div class="btn btn-outline-warning">
+                            <div th:if="${error == null}" class="btn btn-outline-warning">
                                 <h5>Mensaje:</h5>
                                 <h6>¿Seguro desea ELIMINAR este Recibo?</h6>
                             </div>

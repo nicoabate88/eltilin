@@ -66,10 +66,15 @@
                             </div>
                         </div>
                         
-                        <div class="card-footer">
+                        <div class="card-footer d-none d-sm-block">
                         <button type="submit" class="btn btn-outline-danger" title="Crear Artículo">Aceptar</button>
                         <a th:href= "@{/caja/listar}" type="button" class="btn btn-outline-warning" title="Volver a Listado de Artículos">Cancelar</a>
                         </div>
+                        
+                         <div class="d-block d-md-none">
+                                    <button type="submit" class="btn btn-outline-danger" title="Crear Artículo">Aceptar</button>
+                        <a th:href= "@{/caja/listar}" type="button" class="btn btn-outline-warning" title="Volver a Listado de Artículos">Cancelar</a>
+                            </div>
                     </form>
                 </div>
             </div>

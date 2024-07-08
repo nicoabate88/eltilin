@@ -31,7 +31,7 @@ public class ArticuloControlador {
             @RequestParam(required = false) Double precio, @RequestParam(required = false) Double cantidad, ModelMap modelo) {
 
         try {
-            
+
             articuloServicio.crearArticulo(nombre, codigo, precio, cantidad);
 
             Long id = articuloServicio.buscarUltimo();
@@ -41,9 +41,11 @@ public class ArticuloControlador {
             return "articulo_mostrar.html";
 
         } catch (MiException ex) {
-            
+
             modelo.put("error", ex.getMessage());
-            
+            modelo.put("nombre", nombre);
+            modelo.put("codigo", codigo);
+
             return "articulo_registrar.html";
         }
 
@@ -64,7 +66,7 @@ public class ArticuloControlador {
 
         return "articulo_listar.html";
     }
-    
+
     @GetMapping("/listarPdf")
     public String listarPdf(ModelMap modelo) {
 
@@ -117,12 +119,20 @@ public class ArticuloControlador {
     public String modifica(@RequestParam Long id, @RequestParam String nombre, @RequestParam(required = false) String codigo,
             @RequestParam(required = false) Double precio, @RequestParam(required = false) Double cantidad, ModelMap modelo) {
 
-        articuloServicio.modificarArticulo(id, nombre, codigo, precio, cantidad);
+        try {
+            articuloServicio.modificarArticulo(id, nombre, codigo, precio, cantidad);
+            modelo.addAttribute("articulo", articuloServicio.buscarArticulo(id));
+            modelo.put("exito", "Artículo MODIFICADO exitosamente");
 
-        modelo.addAttribute("articulo", articuloServicio.buscarArticulo(id));
-        modelo.put("exito", "Artículo MODIFICADO exitosamente");
+            return "articulo_mostrar.html";
 
-        return "articulo_mostrar.html";
+        } catch (MiException ex) {
+
+            modelo.put("articulo", articuloServicio.buscarArticulo(id));
+            modelo.put("error", ex.getMessage());
+
+            return "articulo_modificar.html";
+        }
 
     }
 
@@ -141,7 +151,7 @@ public class ArticuloControlador {
 
             articuloServicio.eliminarArticulo(id);
 
-            modelo.addAttribute("articulos", articuloServicio.buscarArticulos());
+            modelo.addAttribute("articulos", articuloServicio.buscarArticuloIdDesc());
             modelo.put("exito", "Artículo ELIMINADO exitosamente");
 
             return "articulo_listar.html";
@@ -154,14 +164,6 @@ public class ArticuloControlador {
             return "articulo_eliminar.html";
         }
 
-    }
-
-    @GetMapping("/modificarPrecio")
-    public String modificarPrecio() {
-
-        articuloServicio.actualizarPrecio(10.0);
-
-        return "index.html";
     }
 
 }

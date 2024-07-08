@@ -35,15 +35,15 @@
             <div class="card bg-dark">  
                 <div class="card-header bg-dark text-white">
 
-                    <div class="row">
-                        <div class="mb-4 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                    <div class="row mb-4">
+                        <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                             <div class="form-floating btn btn-outline-danger" type="button">                                   
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0"/>
                                 </svg>  <h5>Cuenta</h5>
                             </div>
                         </div> 
-                        <div class="d-none d-sm-block col-md-3 col-lg-3 col-xl-3">
+                        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                             <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                 <h3>Cuenta de Cliente</h3>
                             </div>
@@ -57,28 +57,28 @@
                                 </svg> </a>                                               
                         </div> 
                     </div>
-                    <div class="row">
-                        <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2 mb-3">               
+                    <div class="row mb-3">
+                        <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2">               
                             <div class="form-floating mb-3">
                                 <label for="id" class="form-label text-white">ID Cliente</label>
                                 <input type="text" id="id" class="bg-dark text-white form-control" th:value="${cuenta.cliente.id}" disabled readonly>
                             </div>
                         </div>
-                        <div class="col-sm-5 col-md-5 col-lg-5 col-xl- mb-3">               
-                            <div class="form-floating mb-4">
+                        <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5">               
+                            <div class="form-floating mb-3">
                                 <label for="nombre" class="form-label text-white">Nombre de Cliente</label>
                                 <input type="text" id="nombre" class="bg-dark text-white form-control" th:value="${cuenta.cliente.nombre}" disabled readonly>
                             </div>
                         </div>
 
-                        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 mb-3">               
-                            <div class="form-floating mb-4">
+                        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">               
+                            <div class="form-floating mb-3">
                                 <label for="cuenta" class="form-label text-white">Número de Cuenta</label>
                                 <input type="text" id="cuenta" class="bg-dark text-white form-control" th:value="${cuenta.id}" disabled readonly>
                             </div>
                         </div>
-                        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-3">               
-                            <div class="form-floating mb-4">
+                        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">               
+                            <div class="form-floating mb-3">
                                 <label for="saldo" class="form-label text-white">Saldo</label>
                                 <input type="text" id="saldo" class="bg-dark text-white form-control" th:value="'$'+${total}" disabled readonly>
                             </div>

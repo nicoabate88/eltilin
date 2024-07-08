@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.entidades;
 
 import java.util.Date;
@@ -14,7 +13,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Pago {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -112,8 +111,5 @@ public class Pago {
     public String toString() {
         return "Pago{" + "id=" + id + ", fecha=" + fecha + ", proveedor=" + proveedor + ", observacion=" + observacion + ", importe=" + importe + ", estado=" + estado + ", valor=" + valor + ", usuario=" + usuario + '}';
     }
-    
-    
-    
-    
+
 }

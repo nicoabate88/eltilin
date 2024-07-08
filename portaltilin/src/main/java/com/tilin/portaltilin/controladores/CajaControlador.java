@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.controladores;
 
 import com.tilin.portaltilin.entidades.Caja;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/caja")
 @PreAuthorize("hasRole('ROLE_admin')")
 public class CajaControlador {
-    
+
     @Autowired
     private CajaServicio cajaServicio;
     @Autowired
@@ -32,7 +31,7 @@ public class CajaControlador {
     private ReciboServicio reciboServicio;
     @Autowired
     private PagoServicio pagoServicio;
-    
+
     @GetMapping("/registrar")
     public String registrar() {
 
@@ -50,7 +49,7 @@ public class CajaControlador {
         return "caja_listar.html";
 
     }
-    
+
     @GetMapping("/listar")
     public String listar(ModelMap modelo) {
 
@@ -58,7 +57,7 @@ public class CajaControlador {
 
         return "caja_listar.html";
     }
-    
+
     @GetMapping("/mostrar/{id}")
     public String mostrar(@PathVariable Long id, ModelMap modelo) {
 
@@ -72,7 +71,7 @@ public class CajaControlador {
         return "caja_mostrar.html";
 
     }
-    
+
     @GetMapping("/mostrarCartera/{id}")
     public String mostrarCartera(@PathVariable Long id, ModelMap modelo) {
 
@@ -87,7 +86,6 @@ public class CajaControlador {
 
     }
 
-    
     @GetMapping("/mostrarValor/{id}")
     public String mostrarTransaccion(@PathVariable Long id, ModelMap modelo) {
 
@@ -101,14 +99,14 @@ public class CajaControlador {
 
         } else {
 
-           modelo.put("pago", pagoServicio.buscarPagoIdValor(id));
+            modelo.put("pago", pagoServicio.buscarPagoIdValor(id));
 
             return "caja_mostrarPago.html";
         }
 
     }
-    
-      public String convertirNumeroMiles(Double num) {    //metodo que sirve para dar formato separador de miles a total
+
+    public String convertirNumeroMiles(Double num) {    //metodo que sirve para dar formato separador de miles a total
 
         DecimalFormat formato = new DecimalFormat("#,##0.00");
         String numeroFormateado = formato.format(num);
@@ -116,5 +114,5 @@ public class CajaControlador {
         return numeroFormateado;
 
     }
-    
+
 }

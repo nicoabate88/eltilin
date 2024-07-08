@@ -28,16 +28,16 @@ body, html {
     
     #tablaModificar {
             
-       min-height: 435px; /* Altura total menos el navbar (56px) */
-       max-height: 435px;  
+       min-height: 415px; /* Altura total menos el navbar (56px) */
+       max-height: 415px;  
        overflow-y: auto;
 
     }
     
     #tablaModificarA {
             
-       min-height: 352px; /* Altura total menos el navbar (56px) */
-       max-height: 352px;  
+       min-height: 358px; /* Altura total menos el navbar (56px) */
+       max-height: 358px;  
        overflow-y: auto;
    
     }
@@ -49,13 +49,7 @@ body, html {
        overflow-y: auto;
    
     }
-    
 
-    #logo {
-        width: 240px;
-        height: 60px;
-
-    }
     
    
       

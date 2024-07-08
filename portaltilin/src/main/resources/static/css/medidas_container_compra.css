@@ -16,7 +16,6 @@ body, html {
       
     }
     
-    
      #tablaAlturaCompra {
             
        min-height: 272px; /* Altura total menos el navbar (56px) */
@@ -35,17 +34,11 @@ body, html {
     
      #tablaAlturaRegistrado {
             
-       min-height: 332px; /* Altura total menos el navbar (56px) */
-       max-height: 332px;  
+       min-height: 326px; /* Altura total menos el navbar (56px) */
+       max-height: 326px;  
        overflow-y: auto;
    
     }
-    
-
-    #logo {
-        width: 240px;
-        height: 60px;
-
-    }
+   
     
     

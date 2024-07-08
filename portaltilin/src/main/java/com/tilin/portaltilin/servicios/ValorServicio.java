@@ -35,7 +35,7 @@ public class ValorServicio {
         valor.setFecha(fechaOrden);
         valor.setObservacion(fecha);
         valor.setNombre(nombre);
-        valor.setIdSocio(idSocio);                
+        valor.setIdSocio(idSocio);
 
         valorRepositorio.save(valor);
 
@@ -60,8 +60,8 @@ public class ValorServicio {
 
         return listaValores;
     }
-    
-     @Transactional
+
+    @Transactional
     public void modificarValor(Long id) { //llega idValor del cheque perteneciente al Recibo que cambía de CARTERA a GIRADO
 
         Valor valor = new Valor();
@@ -75,7 +75,7 @@ public class ValorServicio {
         valorRepositorio.save(valor);
 
     }
-    
+
     @Transactional
     public void modificarEstadoValor(Long id) {
 
@@ -90,33 +90,33 @@ public class ValorServicio {
         valorRepositorio.save(valor);
 
     }
-    
-    public void modificarValorPorEliminarPago(Long idPago){
-        
+
+    public void modificarValorPorEliminarPago(Long idPago) {
+
         ArrayList<Valor> listaValores = new ArrayList();
-        
+
         listaValores = valorRepositorio.buscarValorPago(idPago);
         Valor valor = new Valor();
-        
-        for(Valor v : listaValores){
-            if(!v.getTipoValor().equalsIgnoreCase("CHEQUE")){
-                 eliminarValor(v.getId());
+
+        for (Valor v : listaValores) {
+            if (!v.getTipoValor().equalsIgnoreCase("CHEQUE")) {
+                eliminarValor(v.getId());
             } else {
                 modificarEstadoValor(v.getIdSocio());
                 eliminarValor(v.getId());
             }
         }
     }
-    
-     public void modificarValorPorEliminarRecibo(Long idRecibo){
-        
+
+    public void modificarValorPorEliminarRecibo(Long idRecibo) {
+
         ArrayList<Valor> listaValores = new ArrayList();
-        
+
         listaValores = valorRepositorio.buscarValorRecibo(idRecibo);
-        
-        for(Valor v : listaValores){
-         
-                 eliminarValor(v.getId());
+
+        for (Valor v : listaValores) {
+
+            eliminarValor(v.getId());
         }
     }
 
@@ -134,15 +134,13 @@ public class ValorServicio {
 
         valorRepositorio.save(valor);
         cajaServicio.quitarValorCaja(caja, valor.getId());
-        
+
     }
-    
-    
-    
-    public ArrayList<Valor> buscarValorCartera(){
-        
+
+    public ArrayList<Valor> buscarValorCartera() {
+
         ArrayList<Valor> listaValores = valorRepositorio.buscarValorCartera();
-        
+
         return listaValores;
     }
 
@@ -155,9 +153,9 @@ public class ValorServicio {
         Double saldoAcumulado = 0.0;
 
         for (Valor v : listaValores) {                 //for para obtener el saldo acumulado
-                saldoAcumulado = saldoAcumulado + v.getImporte();
-                saldoAcumulado = Math.round(saldoAcumulado * 100.0) / 100.0;  //redondeamos saldoAcumulado solo a 2 decimales
-                v.setSaldoAcumulado(saldoAcumulado);   
+            saldoAcumulado = saldoAcumulado + v.getImporte();
+            saldoAcumulado = Math.round(saldoAcumulado * 100.0) / 100.0;  //redondeamos saldoAcumulado solo a 2 decimales
+            v.setSaldoAcumulado(saldoAcumulado);
         }
 
         Collections.sort(listaValores, ValorComparador.ordenarIdDesc); //ordena con fecha descendente para presentar en la vista desde mas reciente a mas antiguo

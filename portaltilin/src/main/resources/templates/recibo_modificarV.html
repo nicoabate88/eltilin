@@ -51,21 +51,21 @@
                         </div>
                     </div>
 
-                         <div class="row">
-                            <div class="col-sm-2 mb-3">
+                         <div class="row mb-2">
+                            <div class="col-sm-2 mb-2">
                                 <div class="form-floating">
                                     <label for="id" class="form-label text-white">ID Recibo</label>
                                     <input id="id" class="bg-dark text-white form-control" type="text" th:value="${recibo.id}" disabled readonly>
                                 </div>  
                             </div>
                             <div class="col-sm-7">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="cliente" class="form-label text-white">Nombre de Cliente</label>
                                     <input id="cliente" class="bg-dark text-white form-control" type="text" th:value="${recibo.cliente.nombre}" disabled readonly>
                                 </div>  
                             </div>
                               <div class="col-sm-3">    
-                                    <div class="form-floating">
+                                    <div class="form-floating mb-2">
                                         <label for="importe" class="form-label text-white">Total Recibo</label>
                                         <input type="text" id="importe" class="bg-dark text-white form-control" th:value="'$'+${totalRecibo}"disabled readonly>
                                     </div>
@@ -93,7 +93,7 @@
                         
                         <div class="row">
                              <div class="col-sm-3">
-                                <div class="form-floating mb-3">    
+                                <div class="form-floating mb-2">    
                                     <label for="tipoValor">Seleccione Tipo de Valor</label>
                                     <select id="tipoValor" type="text" class="bg-dark text-white form-control" name="tipoValor">
                                         <option value="" selected disabled>Seleccione Valor</option>
@@ -104,14 +104,14 @@
                                 </div>
                             </div>
                          <div class="col-sm-2">    
-                                    <div class="form-floating">
+                                    <div class="form-floating mb-2">
                                         <label for="importe" class="form-label text-white">Ingrese Importe</label>
                                         <input type="number" step="0.01" min="0" max="9999999999" id="precio" class="bg-dark text-white form-control" name="importe"
                                                placeholder="Ingrese Importe" minlength="0" maxlength="99999999999" size="99999999999" required>
                                     </div>
                                 </div>
                             <div class="col-sm-2">    
-                                    <div class="form-floating">
+                                    <div class="form-floating mb-2">
                                         <label for="numero" class="form-label text-white">Ingrese Número</label>
                                         <input type="number" min="0" max="9999999999" id="precio" class="bg-dark text-white form-control" name="numero"
                                                placeholder="Ingrese Número" minlength="0" maxlength="99999999999" size="99999999999" required>
@@ -119,12 +119,12 @@
                                 </div>
                             <div class="col-sm-2">
                                 <div class="form-floating">
-                                    <label for="fechaV" class="form-label text-white">Fecha de Cheque</label>
-                                    <input id="fechaV" type="date" class="bg-dark text-white form-control" name="fechaV" required>
+                                    <label for="fechaV" class="form-label text-white">Seleccione Fecha</label>
+                                    <input id="fechaV" type="date" class="bg-dark text-white form-control" name="fechaV" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
                                 </div>
                             </div>
                         <div class="col-sm-1">  
-                                    <div class="form-floating text-center">
+                                    <div class="form-floating">
                                         <label class="form-label text-white"></label><br><br>
                                         <button type="submit" class="btn btn-outline-warning" title="Agregar Valores">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -142,10 +142,10 @@
                                 <thead>
                                     <tr>
                                         <th class="col-sm-1"></th>
-                                        <th class="col-sm-2">TIPO VALOR</th>
-                                        <th class="col-sm-2">NUMERO</th>
-                                        <th class="col-sm-2">FECHA</th>
-                                        <th class="col-sm-2">IMPORTE</th>                                        
+                                        <th class="col-sm-2">TIPO VALOR</th> 
+                                        <th class="col-sm-2">IMPORTE</th> 
+                                        <th class="col-sm-2">NÚMERO</th>
+                                        <th class="col-sm-2">FECHA</th>      
                                         <th class="col-sm-1">ACCIÓN</th> 
                                         <th class="col-sm-2"></th>  
                                     </tr>
@@ -154,11 +154,11 @@
                                     <tr>
                                         <td></td>
                                         <td th:text="${valor.tipoValor}"></td>
+                                        <td type="number" step="0.01" th:text="'$'+${valor.importe}"></td>
                                         <td th:text="${valor.numero}"></td>
-                                        <td type="date" th:text="${valor.observacion}"></td>
-                                        <td type="number" step="0.01" th:text="'$'+${valor.importe}"></td>                                        
+                                        <td type="date" th:text="${valor.observacion}"></td>                                     
                                         <td>
-                                            <a th:href="@{/recibo/borrarValorV/__${valor.id}__}" type="button" class="btn btn-outline-danger" title="Quitar Valor">
+                                            <a th:if="${valor.estado != 'GIRADO'}" th:href="@{/recibo/borrarValorV/__${valor.id}__}" type="button" class="btn btn-outline-danger" title="Quitar Valor">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
                                                 </svg>

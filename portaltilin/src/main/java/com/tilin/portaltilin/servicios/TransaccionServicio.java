@@ -137,7 +137,7 @@ public class TransaccionServicio {
         } else {
 
             transaccion.setFecha(recibo.getFecha());
-           // transaccion.setObservacion("RECIBO N°" + recibo.getId() + " / " + recibo.getObservacion());
+            // transaccion.setObservacion("RECIBO N°" + recibo.getId() + " / " + recibo.getObservacion());
 
             if (recibo.getImporte() > 0) {
                 Double importeNegativo = recibo.getImporte() * -1;

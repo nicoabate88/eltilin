@@ -35,9 +35,9 @@ public class CompraControlador {
     @Autowired
     private DetalleServicio detalleServicio;
     @Autowired
-    private ArticuloServicio articuloServicio; 
+    private ArticuloServicio articuloServicio;
     @Autowired
-    private ArticuloRepositorio articuloRepositorio;       
+    private ArticuloRepositorio articuloRepositorio;
 
     ArrayList<Detalle> detalles = new ArrayList();
     ArrayList<Detalle> listaPersistida = new ArrayList();
@@ -52,9 +52,9 @@ public class CompraControlador {
 
     @GetMapping("/registrar")
     public String registrar(HttpSession session, ModelMap modelo) {
-        
+
         logueado = (Usuario) session.getAttribute("usuariosession");
-        
+
         detalles.clear();
 
         modelo.addAttribute("proveedores", proveedorServicio.buscarProveedoresNombreAsc());
@@ -62,68 +62,68 @@ public class CompraControlador {
 
         return "compra_registrar.html";
     }
-    
+
     @PostMapping("/addArticulo")
     public String addArticulo(@RequestParam Long id, @RequestParam String fechaC, @RequestParam String tipo,
-            @RequestParam Integer numero, @RequestParam Double total, @RequestParam(required = false) String obs, 
-            @RequestParam(required = false) Long idArticulo,@RequestParam(required = false) Double cantidad, 
-            @RequestParam(required = false) Double precio, ModelMap modelo) throws ParseException{
-        
+            @RequestParam Integer numero, @RequestParam Double total, @RequestParam(required = false) String obs,
+            @RequestParam(required = false) Long idArticulo, @RequestParam(required = false) Double cantidad,
+            @RequestParam(required = false) Double precio, ModelMap modelo) throws ParseException {
+
         idProveedor = id;
         fecha = fechaC;
         tipoComprobante = tipo;
         numeroComprobante = numero;
         importe = total;
         observacion = obs;
-     
-        if(idArticulo == null){
-            
+
+        if (idArticulo == null) {
+
             compraServicio.crearCompra(id, fechaC, obs, tipo, numero, total, detalles, logueado.getId());
-            
+
             Long idCompra = compraServicio.buscarUltimo();
-        
+
             String totalCompra = convertirNumeroMiles(total);
-            
+
             modelo.put("compra", compraServicio.buscarCompra(idCompra));
             modelo.put("importe", totalCompra);
             modelo.put("fecha", fechaC);
             modelo.put("exito", "Compra REGISTRADA exitosamente");
 
             return "compra_registrado.html";
-            
-       } else {
 
-        Articulo articulo = articuloServicio.buscarArticulo(idArticulo);
-        Detalle detalle = new Detalle();
-        detalle.setNombre(articulo.getNombre());
-        detalle.setCodigo(articulo.getCodigo());
-        detalle.setCantidad(cantidad);
-        detalle.setPrecio(precio);
-        detalle.setTotal(cantidad*precio);
-        detalle.setArticulo(articulo);
+        } else {
 
-        detalleServicio.crearDetalle(detalle.getNombre(), detalle.getCodigo(), detalle.getCantidad(), detalle.getPrecio(), detalle.getTotal(), detalle.getArticulo(), "COMPRA");
-        detalle.setId(detalleServicio.buscarUltimo());
-        
-        detalles.add(detalle);
-        
-        String totalSuma = convertirNumeroMiles(total);
-        
-        modelo.put("proveedor", proveedorServicio.buscarProveedor(id));
-        modelo.put("fecha", fechaC);
-        modelo.put("importe", totalSuma);
-        modelo.put("tipo", tipo);
-        modelo.put("numero", numero);
-        modelo.put("observacion", obs);
-        modelo.put("total", total);
-        modelo.addAttribute("lista", detalles);
-        modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
-        
-        return "compra_agregarArticulo.html";
-        
+            Articulo articulo = articuloServicio.buscarArticulo(idArticulo);
+            Detalle detalle = new Detalle();
+            detalle.setNombre(articulo.getNombre());
+            detalle.setCodigo(articulo.getCodigo());
+            detalle.setCantidad(cantidad);
+            detalle.setPrecio(precio);
+            detalle.setTotal(cantidad * precio);
+            detalle.setArticulo(articulo);
+
+            detalleServicio.crearDetalle(detalle.getNombre(), detalle.getCodigo(), detalle.getCantidad(), detalle.getPrecio(), detalle.getTotal(), detalle.getArticulo(), "COMPRA");
+            detalle.setId(detalleServicio.buscarUltimo());
+
+            detalles.add(detalle);
+
+            String totalSuma = convertirNumeroMiles(total);
+
+            modelo.put("proveedor", proveedorServicio.buscarProveedor(id));
+            modelo.put("fecha", fechaC);
+            modelo.put("importe", totalSuma);
+            modelo.put("tipo", tipo);
+            modelo.put("numero", numero);
+            modelo.put("observacion", obs);
+            modelo.put("total", total);
+            modelo.addAttribute("lista", detalles);
+            modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
+
+            return "compra_agregarArticulo.html";
+
         }
     }
-    
+
     @GetMapping("/borrarArticulo/{id}")
     public String borrarArticulo(@PathVariable Long id, ModelMap modelo) {
 
@@ -137,7 +137,7 @@ public class CompraControlador {
 
         detalleServicio.eliminarDetalle(id);
         String totalSuma = convertirNumeroMiles(importe);
-        
+
         modelo.put("proveedor", proveedorServicio.buscarProveedor(idProveedor));
         modelo.put("fecha", fecha);
         modelo.put("importe", totalSuma);
@@ -147,7 +147,7 @@ public class CompraControlador {
         modelo.put("total", importe);
         modelo.addAttribute("lista", detalles);
         modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
-        
+
         return "compra_agregarArticulo.html";
 
     }
@@ -159,15 +159,15 @@ public class CompraControlador {
 
         return "compra_listar.html";
     }
-    
-     @GetMapping("/listarIdAsc")
+
+    @GetMapping("/listarIdAsc")
     public String listarIdAsc(ModelMap modelo) {
 
         modelo.addAttribute("compras", compraServicio.bucarCompras());
 
         return "compra_listar.html";
     }
-    
+
     @GetMapping("/listarNombreAsc")
     public String listarNombreAsc(ModelMap modelo) {
 
@@ -175,7 +175,7 @@ public class CompraControlador {
 
         return "compra_listar.html";
     }
-    
+
     @GetMapping("/listarTipoAsc")
     public String listarTipoAsc(ModelMap modelo) {
 
@@ -183,8 +183,8 @@ public class CompraControlador {
 
         return "compra_listar.html";
     }
-    
-      @GetMapping("/listarNumeroAsc")
+
+    @GetMapping("/listarNumeroAsc")
     public String listarNumeroAsc(ModelMap modelo) {
 
         modelo.addAttribute("compras", compraServicio.buscarCompraNumeroAsc());
@@ -192,20 +192,20 @@ public class CompraControlador {
         return "compra_listar.html";
     }
 
-      @GetMapping("/listarImporteAsc")
+    @GetMapping("/listarImporteAsc")
     public String listarImporteAsc(ModelMap modelo) {
 
         modelo.addAttribute("compras", compraServicio.buscarCompraImporteAsc());
 
         return "compra_listar.html";
     }
-    
+
     @GetMapping("/mostrar/{id}")
     public String mostrar(@PathVariable Long id, ModelMap modelo) {
 
         Compra compra = compraServicio.buscarCompra(id);
         String total = convertirNumeroMiles(compra.getImporte());
-        
+
         modelo.put("compra", compra);
         modelo.put("importe", total);
 
@@ -220,7 +220,7 @@ public class CompraControlador {
         return numeroFormateado;
 
     }
-    
+
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable Long id, ModelMap modelo) {
 
@@ -234,11 +234,11 @@ public class CompraControlador {
     public String modifica(@RequestParam Long id, @RequestParam Long idProveedor, @RequestParam String tipoComprobante,
             @RequestParam String fecha, @RequestParam Integer numeroComprobante, @RequestParam Double importe,
             @RequestParam(required = false) String observacion, HttpSession session, ModelMap modelo) throws ParseException {
-        
+
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         String total = convertirNumeroMiles(importe);
-        
-       compraServicio.modificarCompra(id, idProveedor, fecha, observacion, tipoComprobante, numeroComprobante, importe, logueado.getId());
+
+        compraServicio.modificarCompra(id, idProveedor, fecha, observacion, tipoComprobante, numeroComprobante, importe, logueado.getId());
 
         modelo.put("compra", compraServicio.buscarCompra(id));
         modelo.put("fecha", fecha);
@@ -247,10 +247,10 @@ public class CompraControlador {
 
         return "compra_registrado.html";
     }
-    
+
     @GetMapping("/modificarA/{id}")
     public String modificarA(@PathVariable Long id, ModelMap modelo) {
-        
+
         idCompraB = id;     //idCompra para pasar a metodo borrarArticuloM en caso de ejecutarse
         listaPersistida.clear();
         Compra compra = compraServicio.buscarCompra(id);
@@ -259,57 +259,57 @@ public class CompraControlador {
         modelo.put("compra", compra);
         modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
         modelo.addAttribute("detalles", listaPersistida);
-        
+
         return "compra_modificarA.html";
     }
-    
+
     @GetMapping("/modificaA/{id}")
     public String modificaA(@PathVariable Long id, ModelMap modelo) {
-        
+
         compraServicio.modificarArticuloCompra(id, listaPersistida);
-        
+
         Compra compra = compraServicio.buscarCompra(id);
         String total = convertirNumeroMiles(compra.getImporte());
-        
+
         modelo.put("compra", compra);
         modelo.put("importe", total);
         modelo.put("exito", "Compra MODIFICADA exitosamente");
-        
+
         return "compra_mostrar.html";
     }
-    
+
     @PostMapping("/addArticuloM")
     public String agregarArticuloA(@RequestParam Long idCompra, @RequestParam Long idArticulo, @RequestParam Double cantidad, @RequestParam Double precio, ModelMap modelo) {
-        
+
         Articulo articulo = articuloServicio.buscarArticulo(idArticulo);
         Detalle detalle = new Detalle();
         detalle.setNombre(articulo.getNombre());
         detalle.setCodigo(articulo.getCodigo());
         detalle.setCantidad(cantidad);
         detalle.setPrecio(precio);
-        detalle.setTotal(cantidad*precio);
+        detalle.setTotal(cantidad * precio);
         detalle.setArticulo(articulo);
 
         detalleServicio.crearDetalle(detalle.getNombre(), detalle.getCodigo(), detalle.getCantidad(), detalle.getPrecio(), detalle.getTotal(), detalle.getArticulo(), "COMPRA");
         articuloServicio.actualizarStockCompra(idArticulo, precio, cantidad);
         detalle.setId(detalleServicio.buscarUltimo());
-        
+
         listaPersistida.add(detalle);
 
         modelo.put("compra", compraServicio.buscarCompra(idCompra));
         modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
         modelo.addAttribute("detalles", listaPersistida);
-        
+
         return "compra_modificarA.html";
     }
-    
+
     @GetMapping("/borrarArticuloM/{id}")
-    public String borrarArticuloM(@PathVariable Long id, ModelMap modelo){
-        
+    public String borrarArticuloM(@PathVariable Long id, ModelMap modelo) {
+
         Detalle detalle = new Detalle();
-        
+
         int numeroInt = id.intValue();  //convierto en int id de detalle que llega para buscarlo y eliminarlo del array
-        
+
         for (int i = 0; i < listaPersistida.size(); i++) {
             if (listaPersistida.get(i).getId() == numeroInt) {
                 detalle.setNombre(listaPersistida.get(i).getNombre());
@@ -318,42 +318,38 @@ public class CompraControlador {
                 listaPersistida.remove(i);
             }
         }
-                
+
         articuloServicio.stockArtResta(detalle);
         detalleServicio.modificarDetalle(id);
-        
+
         modelo.put("compra", compraServicio.buscarCompra(idCompraB));
         modelo.addAttribute("articulos", articuloServicio.buscarArticuloNombreAsc());
         modelo.addAttribute("detalles", listaPersistida);
-        
+
         return "compra_modificarA.html";
     }
-    
-     @GetMapping("/eliminar/{id}")
+
+    @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Long id, ModelMap modelo) {
-        
+
         Compra compra = compraServicio.buscarCompra(id);
         String total = convertirNumeroMiles(compra.getImporte());
-        
+
         modelo.put("importe", total);
         modelo.put("compra", compraServicio.buscarCompra(id));
 
         return "compra_eliminar.html";
     }
-    
+
     @GetMapping("/elimina/{id}")
-    public String elimina(@PathVariable Long id, ModelMap modelo){
-        
+    public String elimina(@PathVariable Long id, ModelMap modelo) {
+
         compraServicio.eliminarCompra(id);
-        
+
         modelo.putIfAbsent("exito", "Compra ELIMINADA exitosamente");
         modelo.addAttribute("compras", compraServicio.buscarCompraIdDesc());
-        
+
         return "compra_listar.html";
     }
-    
 
-    
-    
- 
 }

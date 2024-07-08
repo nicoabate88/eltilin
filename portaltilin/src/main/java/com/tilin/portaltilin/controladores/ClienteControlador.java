@@ -1,7 +1,6 @@
 package com.tilin.portaltilin.controladores;
 
 import com.tilin.portaltilin.excepciones.MiException;
-import com.tilin.portaltilin.servicios.ArticuloServicio;
 import com.tilin.portaltilin.servicios.ClienteServicio;
 import com.tilin.portaltilin.servicios.CuentaServicio;
 import com.tilin.portaltilin.servicios.ServicioServicio;
@@ -143,7 +142,7 @@ public class ClienteControlador {
 
         } catch (MiException ex) {
 
-            modelo.put("cliente", clienteServicio.buscarClientesIdDesc());
+            modelo.put("cliente", clienteServicio.buscarCliente(id));
             modelo.put("error", ex.getMessage());
 
             return "cliente_eliminar.html";

@@ -67,7 +67,7 @@ public class ServicioServicio {
         if (user.isPresent()) {
             usuario = user.get();
         }
-        
+
         String obsMay = observacion.toUpperCase();
         Date fechaOrden = convertirFecha(fecha);
         double totalRedondeado = Math.round(total * 100.0) / 100.0;  //redondeamos total solo a 2 decimales
@@ -82,8 +82,8 @@ public class ServicioServicio {
         servicio.setDetalle(detalles);
 
         servicioRepositorio.save(servicio);
-        
-        for(Detalle d : detalles){                           //for para enviar detalles para ajustar stock de articulo 
+
+        for (Detalle d : detalles) {                           //for para enviar detalles para ajustar stock de articulo 
             articuloServicio.stockArtResta(d);
         }
 
@@ -116,7 +116,7 @@ public class ServicioServicio {
         if (user.isPresent()) {
             usuario = user.get();
         }
-        
+
         String obsMay = observacion.toUpperCase();
         Date fechaOrden = convertirFecha(fecha);
         double totalRedondeado = Math.round(total * 100.0) / 100.0;  //redondeamos total solo a 2 decimales
@@ -219,8 +219,7 @@ public class ServicioServicio {
         return idServicio;
 
     }
-    
-    
+
     @Transactional
     public void eliminarServicio(Long idServicio) {
 
@@ -229,23 +228,22 @@ public class ServicioServicio {
         if (servi.isPresent()) {
             servicio = servi.get();
         }
-        
+
         ArrayList<Detalle> lista = detalleRepositorio.buscarDetalleServicio(idServicio);
-        for(Detalle d : lista){
+        for (Detalle d : lista) {
             detalleServicio.modificarDetalle(d.getId());
         }
-        
+
         transaccionServicio.eliminarTransaccionServicio(idServicio);
-        
+
         servicio.setEstado("ELIMINADO");
         servicio.setTotal(0.0);
         servicio.setCliente(null);
         servicio.setDetalle(null);
         servicioRepositorio.save(servicio);
-        
+
     }
-        
-    
+
     public Date convertirFecha(String fecha) throws ParseException { //convierte fecha String a fecha Date
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return formato.parse(fecha);

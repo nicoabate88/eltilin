@@ -120,11 +120,5 @@ public class Valor {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
-
-   
-
-   
 
 }

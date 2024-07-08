@@ -84,7 +84,7 @@
                                         <td th:text="${valor.numero}"></td>
                                         <td th:text="${valor.fecha}"></td>
                                         <td th:text="'$'+${valor.importe}"></td>
-                                        <td class="text-secondary" th:text="'$'+${valor.saldoAcumulado}"></td>
+                                        <td class="d-none d-sm-block text-secondary" th:text="'$'+${valor.saldoAcumulado}"></td>
 
                                         <td>
                                             <a th:href="@{/caja/mostrarValor/__${valor.id}__}" type="button" class="btn btn-outline-danger" title="Ver Detalle">

@@ -32,29 +32,42 @@
             <div class="card bg-dark">  
                 <div class="card-header bg-dark text-white">
 
-                    <div class="row">
-                        <div class="mb-3 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                    <div class="row mb-2">
+                        <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                             <div class="form-floating mb-2 btn btn-outline-danger" type="button">                                        
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
                                 </svg> <h5>Compra</h5>
                             </div>   
                         </div>   
-                        <div class="col-sm-1 col-md-3 col-lg-3 col-xl-3">
+                        <div class="d-none d-sm-block col-md-3 col-lg-3 col-xl-3">
                             <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                 <h3>Registrar Compra</h3>
                             </div>
                         </div>
                         <div class="d-none d-sm-block col-md-5 col-lg-5 col-xl-5">    
                         </div>
-                          <div class="mb-3 col-sm-1 col-md-2 col-lg-2 col-xl-2">
-                            <a th:href="@{/compra/listar}" type="button" class="form-floating mb-2 button btn btn-outline-warning">                                      
+                          <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                            <a th:href="@{/compra/listar}" type="button"title="Ir a Lista de Compras" class="form-floating mb-2 button btn btn-outline-warning">                                      
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
                                 </svg> <h5>Ver Compras</h5>
                             </a>    
                         </div>   
                     </div>
+                    
+                      <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Registrar Compra</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/compra/listar}" class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
+                                </svg>
+                                    <h6 class="text-warning">Compras</h6> 
+                                </a> </div>
+                        </div>
 
                     <form class="formulario" th:action="@{/compra/addArticulo}" method="POST">
                         <div class="row">
@@ -71,15 +84,15 @@
                             </div>
                         </div>
                         
-                         <div class="row mb-3">
+                         <div class="row">
                           <div class="col-sm-2">
-                                <div class="form-floating">
+                                <div class="form-floating mb-3">
                                     <label for="fecha" class="form-label text-white">Fecha</label>
-                                    <input id="fecha" type="date" class="bg-dark text-white form-control" name="fechaC" required>
+                                    <input id="fecha" type="date" class="bg-dark text-white form-control" name="fechaC" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="form-floating">    
+                                <div class="form-floating mb-3">    
                                     <label for="tipoComprobante">Tipo</label>
                                     <select id="tipoComprobante" type="text" class="bg-dark text-white form-control" name="tipo" required>
                                         <option value="" selected disabled>Tipo de Comprobante</option>
@@ -92,7 +105,7 @@
                             </div>
                       
                         <div class="col-sm-3">
-                                <div class="form-floating">
+                                <div class="form-floating mb-3">
                                     <label for="numero" class="form-label text-white">Número de Comprobante</label>
                                     <input type="number" id="numero" class="bg-dark text-white form-control" name="numero" placeholder="Ingrese Número" th:value="${numero}" required>
                                 </div>
@@ -111,10 +124,9 @@
                             </div>
                         </div>
                         
-                        
-                        <div class="row">
-                            <div class="col-sm-7 mb-4">
-                                <div class="form-floating">
+                        <div class="row mb-2">
+                            <div class="col-sm-7">
+                                <div class="form-floating mb-3">
                                     <label for="articulo" class="form-label text-white">Seleccione Artículo</label>
                                     <select id="articulo" class="bg-dark text-white form-control" name="idArticulo">
                                         <option value="" selected disabled>Seleccione Artículo</option>
@@ -125,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">    
-                                <div class="form-floating">
+                                <div class="form-floating mb-3">
                                     <label for="cantidad" class="form-label text-white">Ingrese Cantidad</label>
                                     <input type="number" step="0.01" min="0" max="9999999999" id="cantidad" class="bg-dark text-white form-control" name="cantidad" placeholder="Cantidad" th:value="${cantidad}" minlength="0" maxlength="35" size="35">
                                 </div>

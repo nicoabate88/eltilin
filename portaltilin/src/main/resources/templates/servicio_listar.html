@@ -35,33 +35,53 @@
                 <div class="card bg-dark">  
                     <div class="card-header bg-dark text-white">
 
-                        <div class="row">
-                            <div class="mb-4 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                        <div class="row mb-2">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                                 <a th:href="@{/servicio/listar}" type="button" class="form-floating mb-2 btn btn-outline-danger">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
                                     <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
                                     </svg>  <h5>Servicio</h5>
                                 </a>
                             </div>
-                            <div class="col-sm-1 col-md-3 col-lg-3 col-xl-3">
+                            <div class="d-none d-sm-block col-md-3 col-lg-3 col-xl-3">
                                 <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                     <h3>Lista de Servicios</h3>
                                 </div>
                             </div>
-                            <div class="col-sm-1 col-md-5 col-lg-5 col-xl-5">    
+                            <div class="d-none d-sm-block col-md-5 col-lg-5 col-xl-5">    
                                 <div th:if="${exito != null}" class="btn btn-outline-warning">
                                     <h5>Mensaje:</h5>
                                     <h6 th:text="${exito}"></h6>
                                 </div>                                                   
                             </div>
-                            <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2 text-end">    
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">    
                                 <a th:href="@{/servicio/registrar}" title="Registrar Servicio" type="button" class="form-floating mb-2 button btn btn-outline-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
                                     <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
-                                    </svg>    <h5>Crear</h5>
+                                    </svg>    <h5>Nuevo</h5>
                                 </a>
                             </div>
                         </div>
+                        
+                        <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Lista de Servicios</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/servicio/registrar}" class="text-warning">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                                        <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
+                                        </svg> 
+                                    <h6 class="text-warning">Nuevo</h6> 
+                                </a> </div>
+                        </div>
+                        
+                        <div class="d-block d-md-none mb-2">    
+                                <div th:if="${exito != null}" class="btn btn-outline-warning">
+                                    <h5>Mensaje:</h5>
+                                    <h6 th:text="${exito}"></h6>
+                                </div>                                                   
+                            </div>
 
                         <div class="table-responsive">
                             <table class="table table-dark table-hover table-sm">
@@ -88,7 +108,7 @@
                                     <tr>
                                         <td th:text="${servicio.id}"></td>
                                         <td th:text="${servicio.cliente.nombre}"></td>
-                                        <td th:text="${servicio.vehiculo.dominio}+' - '+ ${servicio.vehiculo.marca}+' '+${servicio.vehiculo.modelo}"></td>
+                                        <td th:text="${servicio.vehiculo.marca}+' '+${servicio.vehiculo.modelo}"></td>
                                         <td th:text="${servicio.fecha}"></td>
                                         <td class="text-center"><a th:href="@{/servicio/mostrar/__${servicio.id}__}" type="button" class="btn btn-outline-danger" title="Ver Servicio">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">

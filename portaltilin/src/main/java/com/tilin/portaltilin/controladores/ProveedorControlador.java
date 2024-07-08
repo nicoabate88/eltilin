@@ -1,4 +1,3 @@
-
 package com.tilin.portaltilin.controladores;
 
 import com.tilin.portaltilin.excepciones.MiException;
@@ -17,17 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/proveedor")
 @PreAuthorize("hasRole('ROLE_admin')")
 public class ProveedorControlador {
-    
+
     @Autowired
     private ProveedorServicio proveedorServicio;
-    
+
     @GetMapping("/registrar")
     public String registrar() {
 
         return "proveedor_registrar.html";
 
     }
-    
+
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, @RequestParam(required = false) Long cuit, @RequestParam(required = false) String localidad,
             @RequestParam(required = false) String direccion, @RequestParam(required = false) Long telefono, @RequestParam(required = false) String email, ModelMap modelo) {
@@ -55,7 +54,7 @@ public class ProveedorControlador {
             return "proveedor_registrar.html";
         }
     }
-    
+
     @GetMapping("/listar")
     public String listar(ModelMap modelo) {
 
@@ -63,6 +62,7 @@ public class ProveedorControlador {
 
         return "proveedor_listar.html";
     }
+
     @GetMapping("/listarIdAsc")
     public String listarIdAsc(ModelMap modelo) {
 
@@ -78,7 +78,7 @@ public class ProveedorControlador {
 
         return "proveedor_listar.html";
     }
-    
+
     @GetMapping("/mostrar/{id}")
     public String mostrar(@PathVariable Long id, ModelMap modelo) {
 
@@ -86,6 +86,7 @@ public class ProveedorControlador {
 
         return "proveedor_mostrar.html";
     }
+
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable Long id, ModelMap modelo) throws MiException {
 
@@ -105,7 +106,7 @@ public class ProveedorControlador {
 
         return "proveedor_mostrar.html";
     }
-    
+
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Long id, ModelMap modelo) {
 
@@ -134,5 +135,5 @@ public class ProveedorControlador {
             return "proveedor_eliminar.html";
         }
     }
-    
+
 }

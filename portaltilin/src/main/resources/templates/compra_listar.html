@@ -32,33 +32,53 @@
                 <div class="card bg-dark">  
                     <div class="card-header bg-dark text-white">
 
-                        <div class="row">
-                            <div class="mb-4 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                        <div class="row mb-2">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                                 <a th:href="@{/compra/listar}" type="button" class="form-floating mb-2 button btn btn-outline-danger">                                      
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
                                 </svg>  <h5>Compra</h5>
                                 </a>    
                             </div>   
-                            <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">
+                            <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">
                                 <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                     <h3>Lista de Compras</h3>
                                 </div>
                             </div>                    
-                            <div class="col-sm-1 col-md-4 col-lg-4 col-xl-4">    
+                            <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">    
                                 <div th:if="${exito != null}" class="btn btn-outline-warning">
                                     <h5>Mensaje:</h5>
                                     <h6 th:text="${exito}"></h6>
                                 </div>                                                   
                             </div> 
-                            <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2 text-end">    
-                                <a th:href="@{/compra/registrar}" title="Registrar nuevo Compra" type="button" class="form-floating mb-2 button btn btn-outline-warning">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">    
+                                <a th:href="@{/compra/registrar}" title="Registrar nueva Compra" type="button" class="form-floating mb-2 button btn btn-outline-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
                                 </svg>  <h5>Nuevo</h5>
                                 </a>
                             </div>
                         </div>
+                        
+                          <div class="row mb-2">
+                            <div class="col-9 d-block d-md-none text-danger">
+                                <h3>Lista de Compras</h3>
+                            </div>
+                            <div class="col-3 d-block d-md-none text-center">
+                                <a th:href="@{/compra/registrar}" class="text-warning">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
+                                </svg>
+                                    <h6 class="text-warning">Nuevo</h6> 
+                                </a> </div>
+                        </div>
+                        
+                        <div class="d-block d-md-none mb-2">    
+                                <div th:if="${exito != null}" class="btn btn-outline-warning">
+                                    <h5>Mensaje:</h5>
+                                    <h6 th:text="${exito}"></h6>
+                                </div>                                                   
+                            </div>
                         
                         <div class="table-responsive">
                             <table class="table table-dark table-hover table-sm">

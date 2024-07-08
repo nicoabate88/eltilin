@@ -3,6 +3,7 @@ package com.tilin.portaltilin.controladores;
 import com.tilin.portaltilin.entidades.Recibo;
 import com.tilin.portaltilin.entidades.Usuario;
 import com.tilin.portaltilin.entidades.Valor;
+import com.tilin.portaltilin.excepciones.MiException;
 import com.tilin.portaltilin.servicios.CajaServicio;
 import com.tilin.portaltilin.servicios.ClienteServicio;
 import com.tilin.portaltilin.servicios.ReciboServicio;
@@ -91,10 +92,10 @@ public class ReciboControlador {
         Double totalRecibo = 0.0;
         String nombre = "RECIBO";
         String estado = "COBRADO";
-        if(tipoValor.equalsIgnoreCase("CHEQUE")){
+        if (tipoValor.equalsIgnoreCase("CHEQUE")) {
             estado = "CARTERA";
         }
-        
+
         valorServicio.crearValor(tipoValor, estado, importe, numero, fechaV, nombre, socio);
 
         Date fechaOrden = convertirFecha(fechaV);
@@ -138,7 +139,7 @@ public class ReciboControlador {
                 valores.remove(i);
             }
         }
-       
+
         valorServicio.eliminarValor(id);
 
         for (Valor val : valores) {    //bucle para sumar total de Valores para pasar a HTML como total de Recibo: totalRecibo
@@ -233,7 +234,7 @@ public class ReciboControlador {
             total = total + valor.getImporte();
         }
         String totalRecibo = convertirNumeroMiles(total);
-        
+
         modelo.put("recibo", reciboServicio.buscarRecibo(id));
         modelo.put("totalRecibo", totalRecibo);
         modelo.put("exito", "Recibo MODIFICADO exitosamente");
@@ -337,7 +338,7 @@ public class ReciboControlador {
 
         return "recibo_listar.html";
     }
-    
+
     @GetMapping("/listarFechaDesc")
     public String listarFechaDesc(ModelMap modelo) {
 
@@ -381,22 +382,30 @@ public class ReciboControlador {
     @GetMapping("/elimina/{id}")
     public String elimina(@PathVariable Long id, ModelMap modelo) {
 
-        reciboServicio.eliminarRecibo(id);
+        try {
+            reciboServicio.eliminarRecibo(id);
 
-        modelo.addAttribute("recibos", reciboServicio.buscarRecibos());
-        modelo.put("exito", "Recibo ELIMINADO exitosamente");
+            modelo.addAttribute("recibos", reciboServicio.buscarRecibos());
+            modelo.put("exito", "Recibo ELIMINADO exitosamente");
 
-        return "recibo_listar.html";
+            return "recibo_listar.html";
 
+        } catch (MiException ex) {
+
+            modelo.put("recibo", reciboServicio.buscarRecibo(id));
+            modelo.put("error", ex.getMessage());
+
+            return "recibo_eliminar.html";
+        }
     }
-    
+
     @GetMapping("/cancelar")
     public String cancela(ModelMap modelo) {
 
-        for(Valor v : valores){    
-        valorServicio.eliminarValor(v.getId());
+        for (Valor v : valores) {
+            valorServicio.eliminarValor(v.getId());
         }
-        
+
         valores.clear();
 
         modelo.addAttribute("clientes", clienteServicio.buscarClientesNombreAsc());

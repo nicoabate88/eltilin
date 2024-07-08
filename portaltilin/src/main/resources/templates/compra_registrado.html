@@ -32,8 +32,8 @@
                 <div class="card bg-dark">  
                     <div class="card-header bg-dark text-white">
 
-                        <div class="row">
-                            <div class="mb-3 d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
+                        <div class="row mb-3">
+                            <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2">
                                 <div class="form-floating mb-2 btn btn-outline-danger" type="button">                                      
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="28" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                         <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
@@ -61,28 +61,28 @@
                                 </div>
                             </div>
                             <div class="mb-1 col-sm-1 col-md-8 col-lg-8 col-xl-8">               
-                                <div class="form-floating mb-3">
+                                <div class="form-floating mb-2">
                                     <label for="nombre" class="form-label text-white">Nombre de Proveedor</label>
                                     <input type="text" id="nombre" class="bg-dark text-white form-control" th:value="${compra.proveedor.nombre}" disabled readonly>
                                 </div>
                             </div>
                         </div>  
 
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="fecha" class="form-label text-white">Fecha</label>
-                                    <input id="fecha" type="text" class="bg-dark text-white form-control" th:value="${fecha}" disabled readonly>
+                                    <input id="fecha" type="date" class="bg-dark text-white form-control" th:value="${fecha}" disabled readonly>
                                 </div>
                             </div>
                             <div class="col-sm-1 col-md-2 col-lg-2 col-xl-2">               
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="tipoComprobante" class="form-label text-white">Tipo</label>
                                     <input type="text" id="tipoComprobante" class="bg-dark text-white form-control" th:value="${compra.tipoComprobante}" disabled readonly>
                                 </div>
                             </div>
                             <div class="col-sm-1 col-md-3 col-lg-3 col-xl-3">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <label for="numero" class="form-label text-white">Número de Comprobante</label>
                                     <input type="number" id="numero" class="bg-dark text-white form-control" th:value="${compra.numeroComprobante}" disabled readonly>
                                 </div>
