@@ -183,9 +183,9 @@ public class TransaccionpServicio {
 
     public ArrayList<Transaccionp> buscarTransaccionIdCuenta(Long idCuenta) {
 
-        Cuentap cuenta = cuentapServicio.buscarCuenta(idCuenta);
-
         ArrayList<Transaccionp> listaTransacciones = transaccionpRepositorio.buscarTransaccionCuenta(idCuenta);
+        
+        Collections.sort(listaTransacciones, TransaccionpComparador.ordenarFechaAcs);
 
         Double saldoAcumulado = 0.0;
 
@@ -195,9 +195,10 @@ public class TransaccionpServicio {
             t.setSaldoAcumulado(saldoAcumulado);
         }
 
-        Collections.sort(listaTransacciones, TransaccionpComparador.ordenarIdDesc); //ordena con fecha descendente para presentar en la vista desde mas reciente a mas antiguo
+        Collections.reverse(listaTransacciones);
 
         return listaTransacciones;
     }
+    
 
 }

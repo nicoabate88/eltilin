@@ -4,9 +4,9 @@ body, html {
 }
 
 .container { 
-             /*
-             la medida para pantalla de resolucion grande es 234
-             */
+    /*
+    la medida para pantalla de resolucion grande es 234
+    */
     min-height: calc(100% - 92px); 
     max-height: calc(100% - 92px);
     display: flex;
@@ -30,6 +30,42 @@ body, html {
     position: absolute;
     bottom: 0;
     padding: 10px;
+
+}
+
+@media (max-width: 1366px) and (max-height: 768px) {
+
+    .navbar {
+        min-height: 55px; /* Altura total menos el navbar (56px) */
+        max-height: 55px;  
+        overflow-y: auto;
+        font-size: 15px;
+    }
+    #logo {
+        width: 155px; /* Puedes usar px, %, em, rem, etc. */
+        height: auto;
+    }
+
+    .container {
+        transform-origin: top left;    
+        transform: scale(0.82);
+
+    }
+
+    #tablaAltura {
+
+        min-height: 192px; 
+        max-height: 192px;  
+        overflow-y: auto;
+
+    }
+
+    #alturaCard {
+
+        min-height: 653px; 
+        max-height: 653px;  
+
+    }
 
 }
 

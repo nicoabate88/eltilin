@@ -1,26 +1,56 @@
 
- 
-    #altoModificar {
-      max-height: 400px;
-      min-height: 400px;
-      overflow-y: auto;
+
+#altoModificar {
+    max-height: 400px;
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+body, html {
+    height: 100%;
+}
+/* Estilo para que el contenedor tenga una altura mínima y se ajuste a su contenido */
+
+
+#altoModificado {
+    max-height: 310px;
+    min-height: 310px;
+    overflow-y: auto;
+}
+
+#altoModificarA {
+    max-height: 241px;
+    min-height: 241px;
+    overflow-y: auto;
+}
+
+
+@media (max-width: 1366px) and (max-height: 768px) {
+
+    .navbar {
+        min-height: 55px; /* Altura total menos el navbar (56px) */
+        max-height: 55px;  
+        overflow-y: auto;
+        font-size: 15px;
     }
-    
-     body, html {
-      height: 100%;
+    #logo {
+        width: 155px; /* Puedes usar px, %, em, rem, etc. */
+        height: auto;
     }
-    /* Estilo para que el contenedor tenga una altura mínima y se ajuste a su contenido */
-   
-    
-    #altoModificado {
-      max-height: 310px;
-      min-height: 310px;
-      overflow-y: auto;
+
+    .container {
+        transform-origin: top left;    
+        transform: scale(0.82);
+
     }
-    
-     #altoModificarA {
-      max-height: 241px;
-      min-height: 241px;
-      overflow-y: auto;
+
+    #tablaAltura {
+
+        min-height: 192px; 
+        max-height: 192px;  
+        overflow-y: auto;
+
     }
+
+}
    

@@ -1,0 +1,28 @@
+@media (max-width: 1366px) and (max-height: 768px) {
+
+    .navbar {
+        min-height: 55px; /* Altura total menos el navbar (56px) */
+        max-height: 55px;  
+        overflow-y: auto;
+        font-size: 15px;
+    }
+    #logo {
+        width: 155px; /* Puedes usar px, %, em, rem, etc. */
+        height: auto;
+    }
+
+    .container {
+        transform-origin: top left;    
+        transform: scale(0.82);
+
+    }
+
+}
+
+    
+   
+      
+     
+     
+
+
