@@ -42,21 +42,16 @@
                                     </svg> <h5>Caja</h5>
                                 </div> 
                             </div>   
-                            <div class="d-none d-sm-block col-md-3 col-lg-3 col-xl-3">
+                            <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">
                                 <div class="d-flex align-items-center text-danger" style="height: 72px;">
                                     <h3>Lista de Cajas</h3>
-                                    <br>
-                                    <div class=" d-block d-md-none text-end">
-                                    <a th:href="@{/caja/registrar}" title="Registrar Nueva Caja" type="button" class="form-floating btn btn-outline-warning">
-                                       <h5>Nuevo</h5> 
-                                    </a> </div>
                                 </div>
                             </div>
-                            <div class="d-none d-sm-block col-md-5 col-lg-5 col-xl-5">    
-                                <div th:if="${error != null}" class="btn btn-outline-danger">
+                             <div class="d-none d-sm-block col-md-4 col-lg-4 col-xl-4">    
+                                <div th:if="${exito != null}" class="btn btn-outline-warning">
                                     <h5>Mensaje:</h5>
-                                    <h6 th:text="${error}"></h6>
-                                </div>
+                                    <h6 th:text="${exito}"></h6>
+                                </div>                                                   
                             </div>
                             <div class="d-none d-sm-block col-md-2 col-lg-2 col-xl-2 text-end">    
                                 <a th:href="@{/caja/registrar}" title="Registrar nueva Caja" type="button" class="form-floating mb-2 btn btn-outline-warning">

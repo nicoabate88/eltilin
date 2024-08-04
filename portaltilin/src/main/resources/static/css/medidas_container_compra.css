@@ -26,8 +26,8 @@ body, html {
 
 #tablaAlturaElimina {
 
-    min-height: 250px; /* Altura total menos el navbar (56px) */
-    max-height: 250px;  
+    min-height: 332px; /* Altura total menos el navbar (56px) */
+    max-height: 332px;  
     overflow-y: auto;
 
 }
